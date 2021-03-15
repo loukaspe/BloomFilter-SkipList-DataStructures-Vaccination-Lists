@@ -9,6 +9,8 @@
 #define MAX_LEVEL 16
 #endif
 
+using namespace std;
+
 static const int DEFAULT_KEY = -1;
 static const int DEFAULT_VALUE = 0;
 
@@ -19,17 +21,24 @@ private:
     SkipListNode **next;
 public:
     SkipListNode();
+
     SkipListNode(int value);
+
     ~SkipListNode();
 
     int getValue() const;
+
     void setValue(int value);
 
     int getKey() const;
+
     void setKey(int key);
 
     SkipListNode *getNextNodeWithKey(int key) const;
-    void setNextNodeWithKeyTo(int key, SkipListNode* givenNode);
+
+    void setNextNodeWithKeyTo(int key, SkipListNode *givenNode);
+
+    void printValue();
 };
 
 
