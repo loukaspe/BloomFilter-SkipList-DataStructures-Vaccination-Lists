@@ -13,31 +13,40 @@ static const int POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL = 25;
 
 class SkipList {
 private:
-    SkipListNode* firstNode;
-    SkipListNode* lastNode;
+    SkipListNode *firstNode;
+    SkipListNode *lastNode;
     int currentHighestLevel;
     int numberOfNodesExceptFirstAndLast;
+
     int setLevelOfNodeByCalculatingPossibilities();
 
 public:
     SkipList();
+
     virtual ~SkipList();
 
-    int* search(int searchKey);
-    void insert(int searchKey, int *newValue);
-    int deleteNode(int searchKey);
+    int search(int searchKey);
+
+    void insert(int searchKey, int newValue);
+
+    void deleteNode(int searchKey);
+
     void print();
 
     SkipListNode *getFirstNode() const;
+
     void setFirstNode(SkipListNode *firstNode);
 
     SkipListNode *getLastNode() const;
+
     void setLastNode(SkipListNode *lastNode);
 
     int getCurrentHighestLevel() const;
+
     void setCurrentHighestLevel(int currentHighestLevel);
 
     int getNumberOfNodesExceptFirstAndLast() const;
+
     void setNumberOfNodesExceptFirstAndLast(int numberOfNodesExceptFirstAndLast);
 };
 
