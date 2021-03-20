@@ -11,24 +11,24 @@
 
 using namespace std;
 
-static const int DEFAULT_KEY = -1;
-static const int DEFAULT_VALUE = 0;
+static int DEFAULT_KEY = -1;
+static char* DEFAULT_VALUE = "";
 
 class SkipListNode {
 private:
-    int value;
+    char* value;
     int key;
     SkipListNode **next;
 public:
     SkipListNode();
 
-    SkipListNode(int value);
+    SkipListNode(int key);
 
     ~SkipListNode();
 
-    int getValue() const;
+    char* getValue() const;
 
-    void setValue(int value);
+    void setValue(char* value);
 
     int getKey() const;
 

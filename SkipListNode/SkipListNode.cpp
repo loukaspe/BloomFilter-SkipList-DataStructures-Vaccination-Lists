@@ -21,11 +21,11 @@ SkipListNode::~SkipListNode() {
     delete next;
 }
 
-int SkipListNode::getValue() const {
+char* SkipListNode::getValue() const {
     return value;
 }
 
-void SkipListNode::setValue(int value) {
+void SkipListNode::setValue(char* value) {
     SkipListNode::value = value;
 }
 
