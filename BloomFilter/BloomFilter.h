@@ -1,3 +1,9 @@
+/* IMPORTANT DISCLAIMER:
+
+My classes BloomFilter and BitArray are copied from another university project, and
+specifically from Operating Systems with A.Delis.
+No changes were made since their use was exactly what I needed for here too. */
+
 #ifndef UNTITLED_BLOOMFILTER_H
 #define UNTITLED_BLOOMFILTER_H
 

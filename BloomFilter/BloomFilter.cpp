@@ -1,3 +1,10 @@
+/* IMPORTANT DISCLAIMER:
+
+My classes BloomFilter and BitArray are copied from another university project, and
+specifically from Operating Systems with A.Delis.
+No changes were made since their use was exactly what I needed for here too. */
+
+
 /* Implementation of Bloom Filter was based on:
  * 1. Your PDF http://cgi.di.uoa.gr/~ad/k22/Bloom_Filters.pdf
  * 2. https://www.geeksforgeeks.org/bloom-filters-introduction-and-python-implementation/
@@ -25,7 +32,7 @@ unsigned long BloomFilter::firstHashFunction(char* key) {
     unsigned long hash = 5381;
     int c;
 
-    while (c = *key++)
+    while ((c = *key++))
         hash = ((hash << 5) + hash) + c; /* hash * 33 + c */
 
     return hash;
