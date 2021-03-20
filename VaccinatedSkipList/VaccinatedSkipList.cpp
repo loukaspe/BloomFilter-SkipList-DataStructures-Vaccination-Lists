@@ -1,19 +1,19 @@
-#include "NotVaccinatedSkipList.h"
+#include "VaccinatedSkipList.h"
 
-NotVaccinatedSkipList::NotVaccinatedSkipList() :
+VaccinatedSkipList::VaccinatedSkipList() :
         currentHighestLevel(STARTING_LEVEL),
         numberOfNodesExceptFirstAndLast(STARTING_SIZE) {
-    firstNode = new NotVaccinatedPersonSkipListNode();
-    lastNode = new NotVaccinatedPersonSkipListNode(MAX_SKIP_LIST_SIZE);
+    firstNode = new VaccinatedPersonSkipListNode();
+    lastNode = new VaccinatedPersonSkipListNode(MAX_SKIP_LIST_SIZE);
 
     for (int tempKey = 0; tempKey < MAX_SKIP_LIST_SIZE; tempKey++) {
         firstNode->setNextNodeWithKeyTo(tempKey, lastNode);
     }
 }
 
-NotVaccinatedSkipList::~NotVaccinatedSkipList() {
-    NotVaccinatedPersonSkipListNode *tempNode;
-    NotVaccinatedPersonSkipListNode *tempNode2;
+VaccinatedSkipList::~VaccinatedSkipList() {
+    VaccinatedPersonSkipListNode *tempNode;
+    VaccinatedPersonSkipListNode *tempNode2;
 
     tempNode = firstNode->getNextNodeWithKey(0);
     while (tempNode != NULL) {
@@ -25,40 +25,40 @@ NotVaccinatedSkipList::~NotVaccinatedSkipList() {
     delete firstNode;
 }
 
-NotVaccinatedPersonSkipListNode *NotVaccinatedSkipList::getFirstNode() const {
+VaccinatedPersonSkipListNode *VaccinatedSkipList::getFirstNode() const {
     return firstNode;
 }
 
-void NotVaccinatedSkipList::setFirstNode(NotVaccinatedPersonSkipListNode *firstNode) {
-    NotVaccinatedSkipList::firstNode = firstNode;
+void VaccinatedSkipList::setFirstNode(VaccinatedPersonSkipListNode *firstNode) {
+    VaccinatedSkipList::firstNode = firstNode;
 }
 
-NotVaccinatedPersonSkipListNode *NotVaccinatedSkipList::getLastNode() const {
+VaccinatedPersonSkipListNode *VaccinatedSkipList::getLastNode() const {
     return lastNode;
 }
 
-void NotVaccinatedSkipList::setLastNode(NotVaccinatedPersonSkipListNode *lastNode) {
-    NotVaccinatedSkipList::lastNode = lastNode;
+void VaccinatedSkipList::setLastNode(VaccinatedPersonSkipListNode *lastNode) {
+    VaccinatedSkipList::lastNode = lastNode;
 }
 
-int NotVaccinatedSkipList::getCurrentHighestLevel() const {
+int VaccinatedSkipList::getCurrentHighestLevel() const {
     return currentHighestLevel;
 }
 
-void NotVaccinatedSkipList::setCurrentHighestLevel(int currentHighestLevel) {
-    NotVaccinatedSkipList::currentHighestLevel = currentHighestLevel;
+void VaccinatedSkipList::setCurrentHighestLevel(int currentHighestLevel) {
+    this->currentHighestLevel = currentHighestLevel;
 }
 
-int NotVaccinatedSkipList::getNumberOfNodesExceptFirstAndLast() const {
+int VaccinatedSkipList::getNumberOfNodesExceptFirstAndLast() const {
     return numberOfNodesExceptFirstAndLast;
 }
 
-void NotVaccinatedSkipList::setNumberOfNodesExceptFirstAndLast(int numberOfNodesExceptFirstAndLast) {
-    NotVaccinatedSkipList::numberOfNodesExceptFirstAndLast = numberOfNodesExceptFirstAndLast;
+void VaccinatedSkipList::setNumberOfNodesExceptFirstAndLast(int numberOfNodesExceptFirstAndLast) {
+    this->numberOfNodesExceptFirstAndLast = numberOfNodesExceptFirstAndLast;
 }
 
-Person* NotVaccinatedSkipList::search(int searchKey) {
-    NotVaccinatedPersonSkipListNode *tempNode = firstNode;
+Vaccination* VaccinatedSkipList::search(int searchKey) {
+    VaccinatedPersonSkipListNode *tempNode = firstNode;
 
     for (int i = MAX_LEVEL - 1; i >= 0; --i) {
         while ((tempNode->getNextNodeWithKey(i))->getKey() < searchKey) {
@@ -69,17 +69,17 @@ Person* NotVaccinatedSkipList::search(int searchKey) {
     tempNode = tempNode->getNextNodeWithKey(0);
 
     if (tempNode->getKey() == searchKey) {
-        return tempNode->getPerson();
+        return tempNode->getVaccination();
     }
 
     // TODO: return sth else
     return NULL;
 }
 
-void NotVaccinatedSkipList::insert(int searchKey, Person* newPerson) {
-    NotVaccinatedPersonSkipListNode **nodesThatMayNeedToBeUpdated = new NotVaccinatedPersonSkipListNode *[MAX_LEVEL];
+void VaccinatedSkipList::insert(int searchKey, Vaccination* newVaccination) {
+    VaccinatedPersonSkipListNode **nodesThatMayNeedToBeUpdated = new VaccinatedPersonSkipListNode *[MAX_LEVEL];
     int newLevel;
-    NotVaccinatedPersonSkipListNode *tempNode = firstNode;
+    VaccinatedPersonSkipListNode *tempNode = firstNode;
 
     for (int i = MAX_LEVEL - 1; i >= 0; --i) {
         while ((tempNode->getNextNodeWithKey(i))->getKey() < searchKey) {
@@ -99,8 +99,8 @@ void NotVaccinatedSkipList::insert(int searchKey, Person* newPerson) {
     if (newLevel > currentHighestLevel) {
         currentHighestLevel = newLevel;
     }
-    tempNode = new NotVaccinatedPersonSkipListNode(newLevel);
-    tempNode->setPerson(newPerson);
+    tempNode = new VaccinatedPersonSkipListNode(newLevel);
+    tempNode->setVaccination(newVaccination);
     for (int i = 0; i <= newLevel; ++i) {
         tempNode->setNextNodeWithKeyTo(
                 i,
@@ -114,9 +114,9 @@ void NotVaccinatedSkipList::insert(int searchKey, Person* newPerson) {
     delete nodesThatMayNeedToBeUpdated;
 }
 
-void NotVaccinatedSkipList::deleteNode(int searchKey) {
-    NotVaccinatedPersonSkipListNode **nodesThatMayNeedToBeUpdated = new NotVaccinatedPersonSkipListNode *[MAX_LEVEL];
-    NotVaccinatedPersonSkipListNode *temp = firstNode;
+void VaccinatedSkipList::deleteNode(int searchKey) {
+    VaccinatedPersonSkipListNode **nodesThatMayNeedToBeUpdated = new VaccinatedPersonSkipListNode *[MAX_LEVEL];
+    VaccinatedPersonSkipListNode *temp = firstNode;
 
     for (int i = MAX_LEVEL - 1; i >= 0; --i) {
         while ((temp->getNextNodeWithKey(i))->getKey() < searchKey) {
@@ -140,20 +140,20 @@ void NotVaccinatedSkipList::deleteNode(int searchKey) {
     }
 }
 
-void NotVaccinatedSkipList::print() {
-    NotVaccinatedPersonSkipListNode *tempNode = firstNode->getNextNodeWithKey(0);
+void VaccinatedSkipList::print() {
+    VaccinatedPersonSkipListNode *tempNode = firstNode->getNextNodeWithKey(0);
     if (tempNode == lastNode) {
         //TODO: Empty List
         return;
     }
 
     while (tempNode != lastNode) {
-        tempNode->printPersonInfo();
+        tempNode->printVaccinationInfo();
         tempNode = tempNode->getNextNodeWithKey(0);
     }
 }
 
-int NotVaccinatedSkipList::setLevelOfNodeByCalculatingPossibilities() {
+int VaccinatedSkipList::setLevelOfNodeByCalculatingPossibilities() {
     srand(time(NULL));
     int level = STARTING_LEVEL;
     while (

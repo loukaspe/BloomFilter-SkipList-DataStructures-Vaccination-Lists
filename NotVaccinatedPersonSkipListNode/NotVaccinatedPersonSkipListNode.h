@@ -1,10 +1,6 @@
 #ifndef ERGASIA1_NOTVACCINATEDPERSONSKIPLISTNODE_H
 #define ERGASIA1_NOTVACCINATEDPERSONSKIPLISTNODE_H
 
-#include <iostream>
-#include <cstdlib>
-#include <ctime>
-
 #include "../Person/Person.h"
 
 #ifndef MAX_LEVEL

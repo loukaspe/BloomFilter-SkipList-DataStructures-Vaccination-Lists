@@ -9,3 +9,8 @@ Person *Vaccination::getPerson() const {
 char *Vaccination::getDate() const {
     return date;
 }
+
+void Vaccination::printInfo() {
+    this->person->printInfo();
+    cout << "Vaccinated on " << this->getDate() << endl;
+}

@@ -25,8 +25,8 @@ Person* NotVaccinatedPersonSkipListNode::getPerson() const {
     return person;
 }
 
-void NotVaccinatedPersonSkipListNode::setPerson(Person* person) {
-    NotVaccinatedPersonSkipListNode::person = person;
+void NotVaccinatedPersonSkipListNode::setPerson(Person* value) {
+    NotVaccinatedPersonSkipListNode::person = value;
 }
 
 int NotVaccinatedPersonSkipListNode::getKey() const {
@@ -46,9 +46,5 @@ void NotVaccinatedPersonSkipListNode::setNextNodeWithKeyTo(int key, NotVaccinate
 }
 
 void NotVaccinatedPersonSkipListNode::printPersonInfo() {
-    cout << "Info of Person ID: " << this->person->getCitizenId() << endl <<
-    "\t" << this->person->getFirstName() << endl <<
-    "\t" << this->person->getLastName() << endl <<
-    "\t" << this->person->getAge() << endl <<
-    "\t" << this->person->getCountry() << endl;
+    this->person->printInfo();
 }

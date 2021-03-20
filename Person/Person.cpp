@@ -34,3 +34,11 @@ char *Person::getCountry() const {
 int Person::getAge() const {
     return age;
 }
+
+void Person::printInfo() {
+    cout << "Info of Person ID: " << this->getCitizenId() << endl <<
+         "\t" << this->getFirstName() << endl <<
+         "\t" << this->getLastName() << endl <<
+         "\t" << this->getAge() << endl <<
+         "\t" << this->getCountry() << endl;
+}

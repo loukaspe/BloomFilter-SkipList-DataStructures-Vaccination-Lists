@@ -1,8 +1,12 @@
 #ifndef ERGASIA1_PERSON_H
 #define ERGASIA1_PERSON_H
 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
 #include <cstring>
-#include "../Vaccination/Vaccination.h"
+
+using namespace std;
 
 class Person {
 private:
@@ -25,6 +29,8 @@ public:
     char *getCountry() const;
 
     int getAge() const;
+
+    void printInfo();
 };
 
 #endif //ERGASIA1_PERSON_H

@@ -1,8 +1,7 @@
 #ifndef ERGASIA1_VACCINATION_H
 #define ERGASIA1_VACCINATION_H
 
-/* Forward Declaration of class Person */
-class Person;
+#include "../Person/Person.h"
 
 class Vaccination {
 private:
@@ -14,6 +13,8 @@ public:
     Person *getPerson() const;
 
     char *getDate() const;
+
+    void printInfo();
 };
 
 
