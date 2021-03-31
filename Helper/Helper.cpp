@@ -21,7 +21,7 @@ char* Helper::copyString(char* source) {
             stringLength * sizeof(char)
     );
 
-    if(destination == nullptr) {
+    if(destination == NULL) {
         fprintf(stderr, "%s",STRING_COPY_ERROR);
         exit(EXIT_FAILURE);
     }

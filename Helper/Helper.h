@@ -4,11 +4,13 @@
 /* Helper Class contains various function that should not technically be
  * part of other classes and have more general usage */
 
+#include <iostream>
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
 #include <cmath>
 
+using namespace std;
 
 class Helper {
 public:
