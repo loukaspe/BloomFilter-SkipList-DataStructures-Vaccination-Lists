@@ -52,3 +52,17 @@ bool PersonLinkedList::isEmpty() {
     return this->size == 0;
 }
 
+PersonLinkedListNode *PersonLinkedList::findByCitizenId(char * citizenId) {
+    PersonLinkedListNode* current = this->head;
+    while (current != NULL)
+    {
+        if (current->person->getCitizenId() == citizenId) {
+            return current;
+        }
+
+        current = current->next;
+    }
+
+    return NULL;
+}
+

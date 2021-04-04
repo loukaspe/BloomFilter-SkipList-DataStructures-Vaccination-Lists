@@ -52,3 +52,17 @@ bool VirusLinkedList::isEmpty() {
     return this->size == 0;
 }
 
+VirusLinkedListNode *VirusLinkedList::findByName(char* virusName) {
+    VirusLinkedListNode* current = this->head;
+    while (current != NULL)
+    {
+        if (current->getVirus()->getVirusName() == virusName) {
+            return current;
+        }
+
+        current = current->next;
+    }
+
+    return NULL;
+}
+

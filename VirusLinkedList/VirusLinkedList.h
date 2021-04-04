@@ -13,10 +13,11 @@ public:
     void deleteNodeWithId(char*);
     int getSize();
     bool isEmpty();
+    VirusLinkedListNode* findByName(char*);
 private:
     VirusLinkedListNode* head;
     int size;
 };
 
 
-#endif //ERGASIA1_VirusLINKEDLIST_H
+#endif //ERGASIA1_VIRUSLINKEDLIST_H

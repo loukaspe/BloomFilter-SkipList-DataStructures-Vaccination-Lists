@@ -6,9 +6,11 @@
 class VirusLinkedListNode {
 public:
     VirusLinkedListNode *next;
-    Virus *Virus;
-
-    VirusLinkedListNode(Virus *);
+    VirusLinkedListNode(Virus*);
+private:
+    Virus* virus;
+public:
+    Virus *getVirus() const;
 };
 
 

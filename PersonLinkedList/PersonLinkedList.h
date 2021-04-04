@@ -12,6 +12,7 @@ public:
     void deleteNodeWithId(char*);
     int getSize();
     bool isEmpty();
+    PersonLinkedListNode* findByCitizenId(char*);
 private:
     PersonLinkedListNode* head;
     int size;
