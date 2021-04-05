@@ -1,8 +1,8 @@
 #include "VaccinatedSkipList.h"
 
 VaccinatedSkipList::VaccinatedSkipList() :
-        currentHighestLevel(STARTING_LEVEL),
-        numberOfNodesExceptFirstAndLast(STARTING_SIZE) {
+        currentHighestLevel(STARTING_VACCINATED_LIST_LEVEL),
+        numberOfNodesExceptFirstAndLast(STARTING_VACCINATED_LIST_SIZE) {
     firstNode = new VaccinatedPersonSkipListNode();
     lastNode = new VaccinatedPersonSkipListNode(MAX_SKIP_LIST_SIZE);
 
@@ -155,9 +155,9 @@ void VaccinatedSkipList::print() {
 
 int VaccinatedSkipList::setLevelOfNodeByCalculatingPossibilities() {
     srand(time(NULL));
-    int level = STARTING_LEVEL;
+    int level = STARTING_VACCINATED_LIST_LEVEL;
     while (
-            (rand() % 100) < POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL
+            (rand() % 100) < VACCINATED_LIST_KEY_POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL
             && level < MAX_LEVEL
             ) {
         level++;

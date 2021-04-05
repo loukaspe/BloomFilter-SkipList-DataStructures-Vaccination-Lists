@@ -1,7 +1,7 @@
 #include "VaccinatedPersonSkipListNode.h"
 
 VaccinatedPersonSkipListNode::VaccinatedPersonSkipListNode() {
-    key = DEFAULT_KEY;
+    key = VACCINATED_LIST_KEY;
     vaccination = NULL;
     this->next = new VaccinatedPersonSkipListNode *[MAX_LEVEL];
     for (int i = 0; i < MAX_LEVEL; i++) {

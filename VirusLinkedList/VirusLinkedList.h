@@ -10,7 +10,7 @@ class VirusLinkedList {
 public:
     VirusLinkedList();
     void addAtStart(Virus*);
-    void deleteNodeWithId(char*);
+    void deleteNodeWithName(char*);
     int getSize();
     bool isEmpty();
     VirusLinkedListNode* findByName(char*);

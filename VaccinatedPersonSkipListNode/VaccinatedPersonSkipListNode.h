@@ -7,7 +7,7 @@
 #define MAX_LEVEL 16
 #endif
 
-static int DEFAULT_KEY = -1;
+static int VACCINATED_LIST_KEY = -1;
 
 class VaccinatedPersonSkipListNode {
 private:

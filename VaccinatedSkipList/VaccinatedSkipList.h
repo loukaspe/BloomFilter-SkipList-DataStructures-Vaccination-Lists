@@ -7,9 +7,9 @@
 
 #include "../VaccinatedPersonSkipListNode/VaccinatedPersonSkipListNode.h"
 
-static const int STARTING_LEVEL = 1;
-static const int STARTING_SIZE = 0;
-static const int POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL = 25;
+static const int STARTING_VACCINATED_LIST_LEVEL = 1;
+static const int STARTING_VACCINATED_LIST_SIZE = 0;
+static const int VACCINATED_LIST_KEY_POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL = 25;
 
 class VaccinatedSkipList {
 private:

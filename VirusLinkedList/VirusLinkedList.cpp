@@ -14,7 +14,7 @@ void VirusLinkedList::addAtStart(Virus* Virus) {
     this->size++;
 }
 
-void VirusLinkedList::deleteNodeWithId(char* id) {
+void VirusLinkedList::deleteNodeWithName(char* name) {
     if( isEmpty() ) {
         return;
     }
@@ -22,7 +22,7 @@ void VirusLinkedList::deleteNodeWithId(char* id) {
     VirusLinkedListNode* current = head;
     VirusLinkedListNode* previous = NULL;
 
-    while( strcmp( current->Virus->getCitizenId(), id ) != 0 ) {
+    while(strcmp(current->getVirus()->getVirusName(), name ) != 0 ) {
 
         if(current->next == NULL) {
             return;

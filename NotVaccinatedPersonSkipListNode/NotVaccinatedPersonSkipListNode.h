@@ -9,7 +9,7 @@
 
 using namespace std;
 
-static int DEFAULT_KEY = -1;
+static int DEFAULT_NOT_VACCINATED_LIST_KEY = -1;
 
 class NotVaccinatedPersonSkipListNode {
 private:
