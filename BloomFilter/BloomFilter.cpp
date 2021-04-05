@@ -2,7 +2,8 @@
 
 My classes BloomFilter and BitArray are copied from another university project, and
 specifically from Operating Systems with A.Delis.
-No changes were made since their use was exactly what I needed for here too. */
+Only change made was about the size that you give in the Description of the Exercise (100KBytes).
+No other change made since their use was exactly what I needed for here too. */
 
 
 /* Implementation of Bloom Filter was based on:
@@ -19,6 +20,7 @@ No changes were made since their use was exactly what I needed for here too. */
 
 const int BloomFilter::NUMBER_OF_HASH_FUNCTIONS = 3;
 
+// Default size = 100 * 1024 Bytes = 100 * 1024 * 8 bits = 819200 bits
 BloomFilter::BloomFilter(int size): size(size)
 {
     this->bitArray = new BitArray(size);

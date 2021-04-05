@@ -2,7 +2,8 @@
 
 My classes BloomFilter and BitArray are copied from another university project, and
 specifically from Operating Systems with A.Delis.
-No changes were made since their use was exactly what I needed for here too. */
+Only change made was about the size that you give in the Description of the Exercise (100KBytes).
+No other change made since their use was exactly what I needed for here too. */
 
 #ifndef UNTITLED_BLOOMFILTER_H
 #define UNTITLED_BLOOMFILTER_H
@@ -12,7 +13,7 @@ No changes were made since their use was exactly what I needed for here too. */
 
 class BloomFilter {
 public:
-    BloomFilter(int);
+    explicit BloomFilter(int = 819200);
     void add(char*);
     bool check(char*);
 private:
