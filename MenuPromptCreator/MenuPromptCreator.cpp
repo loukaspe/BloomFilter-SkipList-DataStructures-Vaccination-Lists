@@ -49,8 +49,8 @@ int MenuPromptCreator::executeInputCommand() {
     char* country = NULL;
     char* virusName = NULL;
     char* isVaccinated = NULL;
-    char* date1 = NULL;
-    char* date2 = NULL;
+    Date* date1 = NULL;
+    Date* date2 = NULL;
     char* possibleExtraArgument = NULL;
     char* argumentOne = NULL;
     char* argumentTwo = NULL;
@@ -181,15 +181,15 @@ int MenuPromptCreator::executeInputCommand() {
 
         if( argumentFour == NULL ) {
             virusName = argumentOne;
-            date1 = argumentTwo;
-            date2 = argumentThree;
+            date1 = new Date(argumentTwo);
+            date2 = new Date(argumentThree);
 
 //            populationStatusForAllCountries(virusName, date1, date2);
         } else {
             country = argumentOne;
             virusName = argumentTwo;
-            date1 = argumentThree;
-            date2 = argumentFour;
+            date1 = new Date(argumentThree);
+            date2 = new Date(argumentFour);
 
 //            populationStatusForCountry(country, virusName, date1, date2);
         }
@@ -219,15 +219,15 @@ int MenuPromptCreator::executeInputCommand() {
 
         if( argumentFour == NULL ) {
             virusName = argumentOne;
-            date1 = argumentTwo;
-            date2 = argumentThree;
+            date1 = new Date(argumentTwo);
+            date2 = new Date(argumentThree);
 
 //            popStatusByAgeForAllCountries(virusName, date1, date2);
         } else {
             country = argumentOne;
             virusName = argumentTwo;
-            date1 = argumentThree;
-            date2 = argumentFour;
+            date1 = new Date(argumentThree);
+            date2 = new Date(argumentFour);
 
 //            popStatusByAgeForCountry(country, virusName, date1, date2);
         }
@@ -261,7 +261,7 @@ int MenuPromptCreator::executeInputCommand() {
         }
 
         if (isVaccinated == "YES") {
-            date1 = strtok(input, SPACE_DELIMITER);
+            date1 = new Date(strtok(input, SPACE_DELIMITER));
 
 //            insertVaccinated(
 //                citizenId,

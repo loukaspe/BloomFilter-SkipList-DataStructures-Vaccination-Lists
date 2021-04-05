@@ -2,17 +2,18 @@
 #define ERGASIA1_VACCINATION_H
 
 #include "../Person/Person.h"
+#include "../Date/Date.h"
 
 class Vaccination {
 private:
     Person* person;
-    char* date;
+    Date* date;
 public:
-    Vaccination(Person *person, char *date);
+    Vaccination(Person *person, Date *date);
 
     Person *getPerson() const;
 
-    char *getDate() const;
+    Date* getDate() const;
 
     void printInfo();
 };

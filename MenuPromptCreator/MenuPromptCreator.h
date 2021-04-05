@@ -1,8 +1,7 @@
 #ifndef ERGASIA1_MENUPROMPTCREATOR_H
 #define ERGASIA1_MENUPROMPTCREATOR_H
 
-
-#include "../Helper/Helper.h"
+#include "../Date/Date.h"
 
 class MenuPromptCreator {
     // I take as granted that the command size will not be bigger than 1024 chars
