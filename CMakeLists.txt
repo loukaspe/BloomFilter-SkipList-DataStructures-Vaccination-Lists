@@ -20,4 +20,8 @@ add_executable(
         VirusLinkedList/VirusLinkedList.cpp VirusLinkedList/VirusLinkedList.h
         VirusLinkedList/VirusLinkedListNode.cpp VirusLinkedList/VirusLinkedListNode.h
         MenuPromptCreator/MenuPromptCreator.cpp MenuPromptCreator/MenuPromptCreator.h
-        Virus/Virus.cpp Virus/Virus.h CitizenRecordsFileReader/CitizenRecordsFileReader.cpp CitizenRecordsFileReader/CitizenRecordsFileReader.h Date/Date.cpp Date/Date.h)
+        Virus/Virus.cpp Virus/Virus.h
+        CitizenRecordsFileReader/CitizenRecordsFileReader.cpp CitizenRecordsFileReader/CitizenRecordsFileReader.h
+        Date/Date.cpp Date/Date.h
+        VaccinationCenter/VaccinationCenter.cpp VaccinationCenter/VaccinationCenter.h
+)
