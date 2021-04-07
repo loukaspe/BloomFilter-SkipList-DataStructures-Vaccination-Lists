@@ -56,7 +56,7 @@ VirusLinkedListNode *VirusLinkedList::findByName(char* virusName) {
     VirusLinkedListNode* current = this->head;
     while (current != NULL)
     {
-        if (current->getVirus()->getVirusName() == virusName) {
+        if (strcmp(current->getVirus()->getVirusName(), virusName) == 0) {
             return current;
         }
 

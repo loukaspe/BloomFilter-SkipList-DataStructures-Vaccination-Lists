@@ -56,7 +56,7 @@ PersonLinkedListNode *PersonLinkedList::findByCitizenId(char * citizenId) {
     PersonLinkedListNode* current = this->head;
     while (current != NULL)
     {
-        if (current->person->getCitizenId() == citizenId) {
+        if (strcmp(current->person->getCitizenId(), citizenId) == 0) {
             return current;
         }
 

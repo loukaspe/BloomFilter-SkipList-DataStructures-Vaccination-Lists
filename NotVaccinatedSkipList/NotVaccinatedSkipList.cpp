@@ -6,7 +6,7 @@ NotVaccinatedSkipList::NotVaccinatedSkipList() :
     firstNode = new NotVaccinatedPersonSkipListNode();
     lastNode = new NotVaccinatedPersonSkipListNode(MAX_SKIP_LIST_SIZE);
 
-    for (int tempKey = 0; tempKey < MAX_SKIP_LIST_SIZE; tempKey++) {
+    for (int tempKey = 0; tempKey < MAX_LEVEL; tempKey++) {
         firstNode->setNextNodeWithKeyTo(tempKey, lastNode);
     }
 }
@@ -92,6 +92,7 @@ void NotVaccinatedSkipList::insert(int searchKey, Person* newPerson) {
     tempNode = tempNode->getNextNodeWithKey(0);
     if (tempNode->getKey() == searchKey) {
         //TODO: throw exception of insertedKey
+        delete nodesThatMayNeedToBeUpdated;
         return;
     }
 
@@ -99,7 +100,7 @@ void NotVaccinatedSkipList::insert(int searchKey, Person* newPerson) {
     if (newLevel > currentHighestLevel) {
         currentHighestLevel = newLevel;
     }
-    tempNode = new NotVaccinatedPersonSkipListNode(newLevel);
+    tempNode = new NotVaccinatedPersonSkipListNode(atoi(newPerson->getCitizenId()));
     tempNode->setPerson(newPerson);
     for (int i = 0; i <= newLevel; ++i) {
         tempNode->setNextNodeWithKeyTo(

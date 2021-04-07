@@ -6,7 +6,7 @@ VaccinatedSkipList::VaccinatedSkipList() :
     firstNode = new VaccinatedPersonSkipListNode();
     lastNode = new VaccinatedPersonSkipListNode(MAX_SKIP_LIST_SIZE);
 
-    for (int tempKey = 0; tempKey < MAX_SKIP_LIST_SIZE; tempKey++) {
+    for (int tempKey = 0; tempKey < MAX_LEVEL; tempKey++) {
         firstNode->setNextNodeWithKeyTo(tempKey, lastNode);
     }
 }
@@ -57,7 +57,7 @@ void VaccinatedSkipList::setNumberOfNodesExceptFirstAndLast(int numberOfNodesExc
     this->numberOfNodesExceptFirstAndLast = numberOfNodesExceptFirstAndLast;
 }
 
-Vaccination* VaccinatedSkipList::search(int searchKey) {
+Vaccination *VaccinatedSkipList::search(int searchKey) {
     VaccinatedPersonSkipListNode *tempNode = firstNode;
 
     for (int i = MAX_LEVEL - 1; i >= 0; --i) {
@@ -76,7 +76,7 @@ Vaccination* VaccinatedSkipList::search(int searchKey) {
     return NULL;
 }
 
-void VaccinatedSkipList::insert(int searchKey, Vaccination* newVaccination) {
+void VaccinatedSkipList::insert(int searchKey, Vaccination *newVaccination) {
     VaccinatedPersonSkipListNode **nodesThatMayNeedToBeUpdated = new VaccinatedPersonSkipListNode *[MAX_LEVEL];
     int newLevel;
     VaccinatedPersonSkipListNode *tempNode = firstNode;
@@ -92,6 +92,7 @@ void VaccinatedSkipList::insert(int searchKey, Vaccination* newVaccination) {
     tempNode = tempNode->getNextNodeWithKey(0);
     if (tempNode->getKey() == searchKey) {
         //TODO: throw exception of insertedKey
+        delete nodesThatMayNeedToBeUpdated;
         return;
     }
 
@@ -99,7 +100,7 @@ void VaccinatedSkipList::insert(int searchKey, Vaccination* newVaccination) {
     if (newLevel > currentHighestLevel) {
         currentHighestLevel = newLevel;
     }
-    tempNode = new VaccinatedPersonSkipListNode(newLevel);
+    tempNode = new VaccinatedPersonSkipListNode(atoi(newVaccination->getPerson()->getCitizenId()));
     tempNode->setVaccination(newVaccination);
     for (int i = 0; i <= newLevel; ++i) {
         tempNode->setNextNodeWithKeyTo(
