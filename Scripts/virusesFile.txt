@@ -1,0 +1,14 @@
+Ebola
+SARS-COVID-19
+HIV
+Rabies
+Smallpox
+Anthrax
+Plague
+Cholera
+Measles
+Malaria
+HepatitisA
+HepatitisB
+Polio
+SpanishFlu
