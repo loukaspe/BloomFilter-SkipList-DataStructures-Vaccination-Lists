@@ -1,7 +1,7 @@
 #ifndef ERGASIA1_MENUPROMPTCREATOR_H
 #define ERGASIA1_MENUPROMPTCREATOR_H
 
-#include "../Date/Date.h"
+#include "../VaccinationCenter/VaccinationCenter.h"
 
 class MenuPromptCreator {
     // I take as granted that the command size will not be bigger than 1024 chars
@@ -15,10 +15,13 @@ class MenuPromptCreator {
     static const char* READING_COMMAND_ERROR_MESSAGE;
 
 public:
+    MenuPromptCreator(VaccinationCenter *vaccinationCenter);
+
     static void showAllOptions();
-    void create();
+    void createAndExecute();
 private:
     int executeInputCommand();
+    VaccinationCenter* vaccinationCenter;
 //    void readInput(char **&);
 };
 

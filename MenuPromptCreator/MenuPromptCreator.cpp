@@ -348,7 +348,9 @@ int MenuPromptCreator::executeInputCommand() {
     }
 }
 
-void MenuPromptCreator::create() {
+void MenuPromptCreator::createAndExecute() {
     // Continue execution until executeInputCommand() returns 0 (EXIT signal)
     while( executeInputCommand() ) {}
 }
+
+MenuPromptCreator::MenuPromptCreator(VaccinationCenter *vaccinationCenter) : vaccinationCenter(vaccinationCenter) {}
