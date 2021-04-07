@@ -1,1 +1,3 @@
 1. Epitrepetai h <std::string>
+2. Symfwna me https://piazza.com/class/kkx2o2gvper2nj?cid=54 to citizenId mporei na nai string h int
+3. Endeiktiko Bloom Filter Size ta 100KBytes
