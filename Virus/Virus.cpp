@@ -8,7 +8,7 @@ Virus::Virus(
 ) : virusName(virusName),
     vaccinatedPeopleList(vaccinatedPeopleList),
     notVaccinatedPeopleList(notVaccinatedPeopleList),
-    notVaccinatedPeopleBloomFilter(notVaccinatedPeopleBloomFilter) {}
+    vaccinatedPeopleBloomFilter(notVaccinatedPeopleBloomFilter) {}
 
 char *Virus::getVirusName() const {
     return virusName;
@@ -22,6 +22,6 @@ NotVaccinatedSkipList *Virus::getNotVaccinatedPeopleList() const {
     return notVaccinatedPeopleList;
 }
 
-BloomFilter *Virus::getNotVaccinatedPeopleBloomFilter() const {
-    return notVaccinatedPeopleBloomFilter;
+BloomFilter *Virus::getVaccinatedPeopleBloomFilter() const {
+    return vaccinatedPeopleBloomFilter;
 }

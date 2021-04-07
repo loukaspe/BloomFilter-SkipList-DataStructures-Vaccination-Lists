@@ -18,7 +18,7 @@ public:
 
     NotVaccinatedSkipList *getNotVaccinatedPeopleList() const;
 
-    BloomFilter *getNotVaccinatedPeopleBloomFilter() const;
+    BloomFilter *getVaccinatedPeopleBloomFilter() const;
 
     Virus(char *virusName, VaccinatedSkipList *vaccinatedPeopleList, NotVaccinatedSkipList *notVaccinatedPeopleList,
           BloomFilter *notVaccinatedPeopleBloomFilter);
@@ -27,7 +27,7 @@ private:
     char *virusName;
     VaccinatedSkipList *vaccinatedPeopleList;
     NotVaccinatedSkipList *notVaccinatedPeopleList;
-    BloomFilter *notVaccinatedPeopleBloomFilter;
+    BloomFilter *vaccinatedPeopleBloomFilter;
 };
 
 
