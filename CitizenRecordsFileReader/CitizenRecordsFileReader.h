@@ -8,7 +8,9 @@
 class CitizenRecordsFileReader {
 public:
     CitizenRecordsFileReader(char *fileName, PersonLinkedList *people, VirusLinkedList *viruses);
+
     void readAndUpdateStructures();
+
 private:
     char *fileName;
     PersonLinkedList *people;
@@ -18,7 +20,12 @@ private:
     static const char *OPEN_FILE_READ_MODE;
     static const char *SPACE_DELIMITER;
     static const char *ERROR_IN_READING_FILE;
-    bool setBooleanIsVaccinatedFromStringValue(char*);
+
+    bool setBooleanIsVaccinatedFromStringValue(char *);
+
+    bool isPersonAlreadyInsertedAsVaccinated(Virus *, char *);
+
+    bool isPersonAlreadyInsertedAsNotVaccinated(Virus *, char *);
 };
 
 #endif //ERGASIA1_CITIZENRECORDSFILEREADER_H

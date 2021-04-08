@@ -35,7 +35,7 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
     Virus *tempVirus;
 
     inputFile = fopen(fileName, OPEN_FILE_READ_MODE);
-    if(inputFile == NULL) {
+    if (inputFile == NULL) {
         Helper::handleError(OPEN_FILE_ERROR);
     }
 
@@ -100,22 +100,35 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
             temp = Helper::removeNewLineCharacterFromString(temp);
             date = new Date(temp);
 
+            tempVirus = this->viruses->findByName(virusName)->getVirus();
+
+            if (this->isPersonAlreadyInsertedAsNotVaccinated(tempVirus, citizenId)) {
+                cout << "ERROR IN RECORD " << line << endl;
+                continue;
+            }
+
             Vaccination *newVaccination = new Vaccination(
                     this->people->findByCitizenId(citizenId)->person,
                     date
             );
 
-            tempVirus = this->viruses->findByName(virusName)->getVirus();
             tempVirus->getVaccinatedPeopleList()->insert(
                     atoi(citizenId),
                     newVaccination
             );
             tempVirus->getVaccinatedPeopleBloomFilter()->add(citizenId);
-        } else {
+        }
+        else {
             tempVirus = this->viruses->findByName(virusName)->getVirus();
+
+            if (this->isPersonAlreadyInsertedAsNotVaccinated(tempVirus, citizenId)) {
+                cout << "ERROR IN RECORD " << line << endl;
+                continue;
+            }
+
             tempVirus->getNotVaccinatedPeopleList()->insert(
-                atoi(citizenId),
-                this->people->findByCitizenId(citizenId)->person
+                    atoi(citizenId),
+                    this->people->findByCitizenId(citizenId)->person
             );
         }
     }
@@ -164,7 +177,7 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
 //    a = hepatitisA->getVaccinatedPeopleList()->search(atoi("1706")); // Den kseroyme - logika no
 //    tempp = hepatitisA->getNotVaccinatedPeopleList()->search(atoi("1706")); // NULL
 
-    if( ferror(inputFile) ) {
+    if (ferror(inputFile)) {
         Helper::handleError(ERROR_IN_READING_FILE);
     }
 
@@ -185,3 +198,19 @@ bool CitizenRecordsFileReader::setBooleanIsVaccinatedFromStringValue(char *isVac
     // TODO: throw exception
     return false;
 }
+
+bool CitizenRecordsFileReader::isPersonAlreadyInsertedAsVaccinated(
+        Virus *virus,
+        char *citizenId
+) {
+    return (virus->getVaccinatedPeopleList()->search(atoi(citizenId)) != NULL);
+}
+
+bool CitizenRecordsFileReader::isPersonAlreadyInsertedAsNotVaccinated(
+        Virus *virus,
+        char *citizenId
+) {
+    return (virus->getNotVaccinatedPeopleList()->search(atoi(citizenId)) != NULL);
+}
+
+
