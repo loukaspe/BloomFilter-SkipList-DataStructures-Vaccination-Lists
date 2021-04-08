@@ -121,7 +121,7 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
         else {
             tempVirus = this->viruses->findByName(virusName)->getVirus();
 
-            if (this->isPersonAlreadyInsertedAsNotVaccinated(tempVirus, citizenId)) {
+            if (this->isPersonAlreadyInsertedAsVaccinated(tempVirus, citizenId)) {
                 cout << "ERROR IN RECORD " << line << endl;
                 continue;
             }
