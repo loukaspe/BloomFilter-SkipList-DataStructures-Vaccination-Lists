@@ -13,24 +13,24 @@ char *MenuPromptCreator::AVAILABLE_COMMANDS[MenuPromptCreator::COMMANDS_NUMBER] 
         "/help"
 };
 
-const char* MenuPromptCreator::INSERT_YOUR_COMMAND_MESSAGE = "Please enter your "
+const char *MenuPromptCreator::INSERT_YOUR_COMMAND_MESSAGE = "Please enter your "
                                                              "command: ";
-const char* MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE = "This is not a valid"
+const char *MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE = "This is not a valid"
                                                            " command. "
-                                                           "To see the available command please type 'help'";
-const char* MenuPromptCreator::READING_COMMAND_ERROR_MESSAGE = "ERROR: There was"
+                                                           "To see the available command please type '/help'";
+const char *MenuPromptCreator::READING_COMMAND_ERROR_MESSAGE = "ERROR: There was"
                                                                " an error reading your command.";
 
 const char *MenuPromptCreator::AVAILABLE_COMMANDS_MESSAGE = "Commands' list: \n"
-    "1) /vaccineStatusBloom citizenID virusName\n"
-    "2) /vaccineStatus citizenID virusName\n"
-    "3) /vaccineStatus citizenID\n"
-    "4) /populationStatus [country] virusName date1 date2\n"
-    "5) /popStatusByAge [country] virusName date1 date2\n"
-    "6) /insertCitizenRecord citizenID firstName lastName country age virusName YES/NO [date]\n"
-    "7) /vaccinateNow citizenID firstName lastName country age virusName\n"
-    "8) /list-nonVaccinated-Persons virusName\n"
-    "9) /exit\n\n";
+                                                            "1) /vaccineStatusBloom citizenID virusName\n"
+                                                            "2) /vaccineStatus citizenID virusName\n"
+                                                            "3) /vaccineStatus citizenID\n"
+                                                            "4) /populationStatus [country] virusName date1 date2\n"
+                                                            "5) /popStatusByAge [country] virusName date1 date2\n"
+                                                            "6) /insertCitizenRecord citizenID firstName lastName country age virusName YES/NO [date]\n"
+                                                            "7) /vaccinateNow citizenID firstName lastName country age virusName\n"
+                                                            "8) /list-nonVaccinated-Persons virusName\n"
+                                                            "9) /exit\n\n";
 
 void MenuPromptCreator::showAllOptions() {
     cout << MenuPromptCreator::AVAILABLE_COMMANDS_MESSAGE << endl;
@@ -42,20 +42,20 @@ int MenuPromptCreator::executeInputCommand() {
     const char *SPACE_DELIMITER = " ";
 
     char *command = NULL;
-    char* citizenId = NULL;
-    char* firstName = NULL;
-    char* lastName = NULL;
-    char* age = NULL;
-    char* country = NULL;
-    char* virusName = NULL;
-    char* isVaccinated = NULL;
-    Date* date1 = NULL;
-    Date* date2 = NULL;
-    char* possibleExtraArgument = NULL;
-    char* argumentOne = NULL;
-    char* argumentTwo = NULL;
-    char* argumentThree = NULL;
-    char* argumentFour = NULL;
+    char *citizenId = NULL;
+    char *firstName = NULL;
+    char *lastName = NULL;
+    char *age = NULL;
+    char *country = NULL;
+    char *virusName = NULL;
+    char *isVaccinated = NULL;
+    Date *date1 = NULL;
+    Date *date2 = NULL;
+    char *possibleExtraArgument = NULL;
+    char *argumentOne = NULL;
+    char *argumentTwo = NULL;
+    char *argumentThree = NULL;
+    char *argumentFour = NULL;
 
     char *input = (char *) malloc(
             MenuPromptCreator::SIZE_OF_INPUT_BUFFER * sizeof(char)
@@ -70,12 +70,12 @@ int MenuPromptCreator::executeInputCommand() {
     /* READ WHOLE INPUT */
 
     if (
-        fgets(
-                input,
-                MenuPromptCreator::SIZE_OF_INPUT_BUFFER,
-                stdin
-        ) == NULL
-    ) {
+            fgets(
+                    input,
+                    MenuPromptCreator::SIZE_OF_INPUT_BUFFER,
+                    stdin
+            ) == NULL
+            ) {
         Helper::handleError(MenuPromptCreator::READING_COMMAND_ERROR_MESSAGE);
     };
 
@@ -88,30 +88,30 @@ int MenuPromptCreator::executeInputCommand() {
     command = strtok(input, SPACE_DELIMITER);
     // We check if there is a command and if it is in the available commands' array
     if (
-        command == NULL
-        || ! Helper::inArray(
-                command,
-                MenuPromptCreator::AVAILABLE_COMMANDS,
-                MenuPromptCreator::COMMANDS_NUMBER
-        )
-    ) {
+            command == NULL
+            || !Helper::inArray(
+                    command,
+                    MenuPromptCreator::AVAILABLE_COMMANDS,
+                    MenuPromptCreator::COMMANDS_NUMBER
+            )
+            ) {
         cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
         free(input);
         return CONTINUE_EXECUTION;
     }
 
     // /vaccineStatusBloom citizenID virusName
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[0] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[0]) == 0) {
 
         citizenId = strtok(input, SPACE_DELIMITER);
         virusName = strtok(input, SPACE_DELIMITER);
         possibleExtraArgument = strtok(NULL, SPACE_DELIMITER);
 
         if (
-            citizenId == NULL
-            || virusName == NULL
-            || possibleExtraArgument != NULL
-        ) {
+                citizenId == NULL
+                || virusName == NULL
+                || possibleExtraArgument != NULL
+                ) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
@@ -125,26 +125,26 @@ int MenuPromptCreator::executeInputCommand() {
 
     // /vaccineStatus citizenID virusName
     // /vaccineStatus citizenID
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[1] ) == 0 ) {
         citizenId = strtok(input, SPACE_DELIMITER);
         virusName = strtok(input, SPACE_DELIMITER);
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[1]) == 0) {
 
         if (
-            citizenId == NULL
-        ) {
+                citizenId == NULL
+                ) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
         }
 
-        if ( virusName == NULL ) {
+        if (virusName == NULL) {
 //            vaccineStatusForAllViruses(citizenId);
         } else {
             possibleExtraArgument = strtok(NULL, SPACE_DELIMITER);
 
             if (
-                possibleExtraArgument != NULL
-            ) {
+                    possibleExtraArgument != NULL
+                    ) {
                 cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
                 free(input);
                 return CONTINUE_EXECUTION;
@@ -161,17 +161,17 @@ int MenuPromptCreator::executeInputCommand() {
 
 
     // /populationStatus [country] virusName date1 date2
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[2] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[2]) == 0) {
 
         argumentOne = strtok(input, SPACE_DELIMITER);
         argumentTwo = strtok(input, SPACE_DELIMITER);
         argumentThree = strtok(input, SPACE_DELIMITER);
 
         if (
-            argumentOne == NULL
-            || argumentTwo == NULL
-            || argumentThree == NULL
-        ) {
+                argumentOne == NULL
+                || argumentTwo == NULL
+                || argumentThree == NULL
+                ) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
@@ -179,7 +179,7 @@ int MenuPromptCreator::executeInputCommand() {
 
         argumentFour = strtok(input, SPACE_DELIMITER);
 
-        if( argumentFour == NULL ) {
+        if (argumentFour == NULL) {
             virusName = argumentOne;
             date1 = new Date(argumentTwo);
             date2 = new Date(argumentThree);
@@ -199,7 +199,7 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // /popStatusByAge [country] virusName date1 date2
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[3] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[3]) == 0) {
 
         argumentOne = strtok(input, SPACE_DELIMITER);
         argumentTwo = strtok(input, SPACE_DELIMITER);
@@ -217,7 +217,7 @@ int MenuPromptCreator::executeInputCommand() {
 
         argumentFour = strtok(input, SPACE_DELIMITER);
 
-        if( argumentFour == NULL ) {
+        if (argumentFour == NULL) {
             virusName = argumentOne;
             date1 = new Date(argumentTwo);
             date2 = new Date(argumentThree);
@@ -247,14 +247,14 @@ int MenuPromptCreator::executeInputCommand() {
         isVaccinated = strtok(input, SPACE_DELIMITER);
 
         if (
-            citizenId == NULL
-            || firstName == NULL
-            || lastName == NULL
-            || country == NULL
-            || age == NULL
-            || virusName == NULL
-            || isVaccinated == NULL
-        ) {
+                citizenId == NULL
+                || firstName == NULL
+                || lastName == NULL
+                || country == NULL
+                || age == NULL
+                || virusName == NULL
+                || isVaccinated == NULL
+                ) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
@@ -271,7 +271,7 @@ int MenuPromptCreator::executeInputCommand() {
 //                age,
 //                date1
 //            );
-        } else if(isVaccinated == "NO") {
+        } else if (isVaccinated == "NO") {
 //            insertNotVaccinated(
 //                citizenId,
 //                firstName,
@@ -290,7 +290,7 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // /vaccinateNow citizenID firstName lastName country age virusName
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[5] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[5]) == 0) {
 
         citizenId = strtok(input, SPACE_DELIMITER);
         firstName = strtok(input, SPACE_DELIMITER);
@@ -300,13 +300,13 @@ int MenuPromptCreator::executeInputCommand() {
         virusName = strtok(input, SPACE_DELIMITER);
 
         if (
-            citizenId == NULL
-            || firstName == NULL
-            || lastName == NULL
-            || country == NULL
-            || age == NULL
-            || virusName == NULL
-        ) {
+                citizenId == NULL
+                || firstName == NULL
+                || lastName == NULL
+                || country == NULL
+                || age == NULL
+                || virusName == NULL
+                ) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
@@ -319,10 +319,10 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // /list-nonVaccinated-Persons virusName
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[6] ) == 0 ) {
         virusName = strtok(input, SPACE_DELIMITER);
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[6]) == 0) {
 
-        if ( virusName == NULL ) {
+        if (virusName == NULL) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
@@ -335,13 +335,13 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // exit command
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[7] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[7]) == 0) {
         free(input);
         return EXIT;
     }
 
     // help command
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[8] ) == 0 ) {
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[8]) == 0) {
         showAllOptions();
         free(input);
         return CONTINUE_EXECUTION;
@@ -350,7 +350,7 @@ int MenuPromptCreator::executeInputCommand() {
 
 void MenuPromptCreator::createAndExecute() {
     // Continue execution until executeInputCommand() returns 0 (EXIT signal)
-    while( executeInputCommand() ) {}
+    while (executeInputCommand()) {}
 }
 
 MenuPromptCreator::MenuPromptCreator(VaccinationCenter *vaccinationCenter) : vaccinationCenter(vaccinationCenter) {}
