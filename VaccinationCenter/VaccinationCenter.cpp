@@ -4,7 +4,30 @@ VaccinationCenter::VaccinationCenter(PersonLinkedList *people, VirusLinkedList *
         : people(people), viruses(viruses) {}
 
 void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName)
-{}
+{
+    VirusLinkedListNode* node = this->viruses->findByName(virusName);
+
+    if(node == NULL) {
+        cout << "No Virus with name " << virusName << endl;
+        return;
+    }
+
+    Virus* virus = node->getVirus();
+
+    if(virus == NULL) {
+        cout << "No Virus with name " << virusName << endl;
+        return;
+    }
+
+    bool isVaccinated = virus->getVaccinatedPeopleBloomFilter()->check(citizenId);
+
+    if(isVaccinated) {
+        cout << "MAYBE" << endl;
+        return;
+    }
+
+    cout << "NOT VACCINATED" << endl;
+}
 
 void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId)
 {}

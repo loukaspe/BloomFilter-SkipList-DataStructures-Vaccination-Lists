@@ -117,7 +117,7 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-//        vaccineStatusBloom(citizenId, virusName);
+        this->vaccinationCenter->vaccineStatusBloom(citizenId, virusName);
 
         free(input);
         return CONTINUE_EXECUTION;
