@@ -103,8 +103,8 @@ int MenuPromptCreator::executeInputCommand() {
     // /vaccineStatusBloom citizenID virusName
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[0]) == 0) {
 
-        citizenId = strtok(input, SPACE_DELIMITER);
-        virusName = strtok(input, SPACE_DELIMITER);
+        citizenId = strtok(NULL, SPACE_DELIMITER);
+        virusName = strtok(NULL, SPACE_DELIMITER);
         possibleExtraArgument = strtok(NULL, SPACE_DELIMITER);
 
         if (
@@ -125,9 +125,9 @@ int MenuPromptCreator::executeInputCommand() {
 
     // /vaccineStatus citizenID virusName
     // /vaccineStatus citizenID
-        citizenId = strtok(input, SPACE_DELIMITER);
-        virusName = strtok(input, SPACE_DELIMITER);
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[1]) == 0) {
+        citizenId = strtok(NULL, SPACE_DELIMITER);
+        virusName = strtok(NULL, SPACE_DELIMITER);
 
         if (
                 citizenId == NULL
@@ -163,9 +163,9 @@ int MenuPromptCreator::executeInputCommand() {
     // /populationStatus [country] virusName date1 date2
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[2]) == 0) {
 
-        argumentOne = strtok(input, SPACE_DELIMITER);
-        argumentTwo = strtok(input, SPACE_DELIMITER);
-        argumentThree = strtok(input, SPACE_DELIMITER);
+        argumentOne = strtok(NULL, SPACE_DELIMITER);
+        argumentTwo = strtok(NULL, SPACE_DELIMITER);
+        argumentThree = strtok(NULL, SPACE_DELIMITER);
 
         if (
                 argumentOne == NULL
@@ -177,7 +177,7 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-        argumentFour = strtok(input, SPACE_DELIMITER);
+        argumentFour = strtok(NULL, SPACE_DELIMITER);
 
         if (argumentFour == NULL) {
             virusName = argumentOne;
@@ -201,9 +201,9 @@ int MenuPromptCreator::executeInputCommand() {
     // /popStatusByAge [country] virusName date1 date2
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[3]) == 0) {
 
-        argumentOne = strtok(input, SPACE_DELIMITER);
-        argumentTwo = strtok(input, SPACE_DELIMITER);
-        argumentThree = strtok(input, SPACE_DELIMITER);
+        argumentOne = strtok(NULL, SPACE_DELIMITER);
+        argumentTwo = strtok(NULL, SPACE_DELIMITER);
+        argumentThree = strtok(NULL, SPACE_DELIMITER);
 
         if (
                 argumentOne == NULL
@@ -215,7 +215,7 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-        argumentFour = strtok(input, SPACE_DELIMITER);
+        argumentFour = strtok(NULL, SPACE_DELIMITER);
 
         if (argumentFour == NULL) {
             virusName = argumentOne;
@@ -237,14 +237,14 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // /insertCitizenRecord citizenID firstName lastName country age virusName YES NO [date]
-    if( strcmp( command, MenuPromptCreator::AVAILABLE_COMMANDS[4] ) == 0 ) {
-        citizenId = strtok(input, SPACE_DELIMITER);
-        firstName = strtok(input, SPACE_DELIMITER);
-        lastName = strtok(input, SPACE_DELIMITER);
-        country = strtok(input, SPACE_DELIMITER);
-        age = strtok(input, SPACE_DELIMITER);
-        virusName = strtok(input, SPACE_DELIMITER);
-        isVaccinated = strtok(input, SPACE_DELIMITER);
+    if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[4]) == 0) {
+        citizenId = strtok(NULL, SPACE_DELIMITER);
+        firstName = strtok(NULL, SPACE_DELIMITER);
+        lastName = strtok(NULL, SPACE_DELIMITER);
+        country = strtok(NULL, SPACE_DELIMITER);
+        age = strtok(NULL, SPACE_DELIMITER);
+        virusName = strtok(NULL, SPACE_DELIMITER);
+        isVaccinated = strtok(NULL, SPACE_DELIMITER);
 
         if (
                 citizenId == NULL
@@ -261,7 +261,7 @@ int MenuPromptCreator::executeInputCommand() {
         }
 
         if (isVaccinated == "YES") {
-            date1 = new Date(strtok(input, SPACE_DELIMITER));
+            date1 = new Date(strtok(NULL, SPACE_DELIMITER));
 
 //            insertVaccinated(
 //                citizenId,
@@ -292,12 +292,12 @@ int MenuPromptCreator::executeInputCommand() {
     // /vaccinateNow citizenID firstName lastName country age virusName
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[5]) == 0) {
 
-        citizenId = strtok(input, SPACE_DELIMITER);
-        firstName = strtok(input, SPACE_DELIMITER);
-        lastName = strtok(input, SPACE_DELIMITER);
-        country = strtok(input, SPACE_DELIMITER);
-        age = strtok(input, SPACE_DELIMITER);
-        virusName = strtok(input, SPACE_DELIMITER);
+        citizenId = strtok(NULL, SPACE_DELIMITER);
+        firstName = strtok(NULL, SPACE_DELIMITER);
+        lastName = strtok(NULL, SPACE_DELIMITER);
+        country = strtok(NULL, SPACE_DELIMITER);
+        age = strtok(NULL, SPACE_DELIMITER);
+        virusName = strtok(NULL, SPACE_DELIMITER);
 
         if (
                 citizenId == NULL
@@ -319,8 +319,8 @@ int MenuPromptCreator::executeInputCommand() {
     }
 
     // /list-nonVaccinated-Persons virusName
-        virusName = strtok(input, SPACE_DELIMITER);
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[6]) == 0) {
+        virusName = strtok(NULL, SPACE_DELIMITER);
 
         if (virusName == NULL) {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
