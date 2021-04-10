@@ -1,9 +1,8 @@
 #include "VirusLinkedListNode.h"
 
-VirusLinkedListNode::VirusLinkedListNode(Virus* Virus) {
-    this->virus = Virus;
+VirusLinkedListNode::VirusLinkedListNode(Virus* virus) {
+    this->virus = virus;
     this->next = NULL;
-//    this->id = Helper::copyString(this->voterNode->voter->getId());
 }
 
 Virus *VirusLinkedListNode::getVirus() const {

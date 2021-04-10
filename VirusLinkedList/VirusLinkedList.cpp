@@ -6,8 +6,8 @@ VirusLinkedList::VirusLinkedList() {
 }
 
 
-void VirusLinkedList::addAtStart(Virus *Virus) {
-    VirusLinkedListNode *newNode = new VirusLinkedListNode(Virus);
+void VirusLinkedList::addAtStart(Virus *virus) {
+    VirusLinkedListNode *newNode = new VirusLinkedListNode(virus);
 
     newNode->next = this->head;
     this->head = newNode;
@@ -75,7 +75,7 @@ void VirusLinkedList::traverseAndCheckIfVaccinated(
 
     Virus *tempVirus = initialRecursiveNode->getVirus();
     bool shouldPrintVirusName = true;
-    tempVirus->printIfPersonIsVaccinated(citizenId, true);
+    tempVirus->printIfPersonIsVaccinated(citizenId, shouldPrintVirusName);
 
     this->traverseAndCheckIfVaccinated(initialRecursiveNode->next, citizenId);
 }

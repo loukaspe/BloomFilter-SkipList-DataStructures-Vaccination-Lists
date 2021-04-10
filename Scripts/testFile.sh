@@ -1,6 +1,7 @@
 #!/bin/bash
 
 # ./testFile.sh virusesFile countriesFile numLines duplicatesAllowed
+# ./Scripts/testFile.sh ./Scripts/virusesFile.txt ./Scripts/countriesFile.txt 200 1
 # I assume that each country and each virus has an one-word name ex 'France' and NOT 'Northern Ireland'
 
 ## Functions
@@ -87,7 +88,7 @@ generateRandomVaccinationStatus() {
     echo
     randomDaysNumber=$(($RANDOM % $RANGE))
 
-    echo "YES $(date -d "$yearOfBirth-01-01 + $randomDaysNumber days" +'%d/%m/%Y')"
+    echo "YES $(date -d "$yearOfBirth-01-01 + $randomDaysNumber days" +'%d-%m-%Y')"
   else
     echo "NO"
   fi
