@@ -63,10 +63,22 @@ public:
 
     void listNotVaccinatedPersonsForVirus(char *virusName);
 
+    void checkAndAddPerson(char *, char *, char *, char *, int);
+
+    void checkAndAddCountry(char *);
+
+    void checkAndAddVirus(char *);
+
+    PersonLinkedList *getPeople() const;
+
+    VirusLinkedList *getViruses() const;
+
+    CountryLinkedList *getCountries() const;
+
 private:
-    PersonLinkedList *people;
     VirusLinkedList *viruses;
     CountryLinkedList *countries;
+    PersonLinkedList *people;
 };
 
 

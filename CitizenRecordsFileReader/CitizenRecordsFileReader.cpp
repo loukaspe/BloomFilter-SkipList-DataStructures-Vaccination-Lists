@@ -8,10 +8,8 @@ const char *CitizenRecordsFileReader::ERROR_IN_READING_FILE = "ERROR: Cannot rea
 
 CitizenRecordsFileReader::CitizenRecordsFileReader(
         char *fileName,
-        PersonLinkedList *people,
-        VirusLinkedList *viruses,
-        CountryLinkedList *countries
-) : fileName(fileName), people(people), viruses(viruses), countries(countries) {}
+        VaccinationCenter *vaccinationCenter
+) : fileName(fileName), vaccinationCenter(vaccinationCenter) {}
 
 // 889 John Papadopoulos Greece 52 COVID-19 YES 27-12-2020
 // 889 John Papadopoulos Greece 52 Η1Ν1 ΝΟ
@@ -65,50 +63,19 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
         temp = Helper::removeNewLineCharacterFromString(temp);
         isVaccinated = setBooleanIsVaccinatedFromStringValue(temp);
 
-        // ADD NEW COUNTRY: new, check, add
+        this->vaccinationCenter->checkAndAddCountry(country);
 
-        if (this->countries->findByName(country) == NULL) {
-            Country *newCountry = new Country(
-                    country,
-                    this->viruses
-            );
+        this->vaccinationCenter->checkAndAddPerson(
+                citizenId,
+                firstName,
+                lastName,
+                country,
+                age
+        );
 
-            this->countries->addAtStart(newCountry);
-        }
+        this->vaccinationCenter->checkAndAddVirus(virusName);
 
-        // ADD NEW PERSON
-
-        if (this->people->findByCitizenId(citizenId) == NULL) {
-            Person *newPerson = new Person(
-                    citizenId,
-                    firstName,
-                    lastName,
-                    country,
-                    age
-            );
-
-            this->people->addAtStart(newPerson);
-            this->countries->findByName(country)->getCountry()->addCitizen(age);
-        }
-
-        // ADD NEW VIRUS: new, check, add
-
-        if (this->viruses->findByName(virusName) == NULL) {
-            BloomFilter *newBloomFilter = new BloomFilter();
-            VaccinatedSkipList *newVaccinatedSkipList = new VaccinatedSkipList();
-            NotVaccinatedSkipList *newNotVaccinatedSkipList = new NotVaccinatedSkipList();
-
-            Virus *newVirus = new Virus(
-                    virusName,
-                    newVaccinatedSkipList,
-                    newNotVaccinatedSkipList,
-                    newBloomFilter
-            );
-
-            this->viruses->addAtStart(newVirus);
-        }
-
-        tempVirus = this->viruses->findByName(virusName)->getVirus();
+        tempVirus = this->vaccinationCenter->getViruses()->findByName(virusName)->getVirus();
 
         if (isVaccinated) {
             temp = strtok(NULL, SPACE_DELIMITER);
@@ -121,7 +88,7 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
             }
 
             Vaccination *newVaccination = new Vaccination(
-                    this->people->findByCitizenId(citizenId)->person,
+                    this->vaccinationCenter->getPeople()->findByCitizenId(citizenId)->person,
                     date
             );
 
@@ -139,16 +106,16 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
 
             tempVirus->getNotVaccinatedPeopleList()->insert(
                     atoi(citizenId),
-                    this->people->findByCitizenId(citizenId)->person
+                    this->vaccinationCenter->getPeople()->findByCitizenId(citizenId)->person
             );
         }
     }
 
 // TESTS GIA INSERT/SEARCH
-//    Virus* rabies = this->viruses->findByName("Rabies")->getVirus();
-//    Virus* cholera = this->viruses->findByName("Cholera")->getVirus();
-//    Virus* hepatitisA = this->viruses->findByName("HepatitisA")->getVirus();
-//    Virus* ebola = this->viruses->findByName("Ebola")->getVirus();
+//    Virus* rabies = this->vaccinationCenter->getViruses()->findByName("Rabies")->getVirus();
+//    Virus* cholera = this->vaccinationCenter->getViruses()->findByName("Cholera")->getVirus();
+//    Virus* hepatitisA = this->vaccinationCenter->getViruses()->findByName("HepatitisA")->getVirus();
+//    Virus* ebola = this->vaccinationCenter->getViruses()->findByName("Ebola")->getVirus();
 //
 //    Vaccination* tempv;
 //    Person* tempp;

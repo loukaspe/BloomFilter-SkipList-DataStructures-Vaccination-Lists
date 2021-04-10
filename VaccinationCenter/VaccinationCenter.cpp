@@ -4,27 +4,26 @@ VaccinationCenter::VaccinationCenter(
         PersonLinkedList *people,
         VirusLinkedList *viruses,
         CountryLinkedList *countries
-): people(people), viruses(viruses), countries(countries) {}
+) : people(people), viruses(viruses), countries(countries) {}
 
-void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName)
-{
-    VirusLinkedListNode* node = this->viruses->findByName(virusName);
+void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName) {
+    VirusLinkedListNode *node = this->viruses->findByName(virusName);
 
-    if(node == NULL) {
+    if (node == NULL) {
         cout << "No Virus with name " << virusName << endl;
         return;
     }
 
-    Virus* virus = node->getVirus();
+    Virus *virus = node->getVirus();
 
-    if(virus == NULL) {
+    if (virus == NULL) {
         cout << "No Virus with name " << virusName << endl;
         return;
     }
 
     bool isVaccinated = virus->getVaccinatedPeopleBloomFilter()->check(citizenId);
 
-    if(isVaccinated) {
+    if (isVaccinated) {
         cout << "MAYBE" << endl;
         return;
     }
@@ -32,20 +31,18 @@ void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName)
     cout << "NOT VACCINATED" << endl;
 }
 
-void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId)
-{
+void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId) {
     this->viruses->checkIfVaccinatedForAllViruses(citizenId);
 }
 
-void VaccinationCenter::vaccineStatusForSpecificVirus(char *citizenId, char *virusName)
-{
-    VirusLinkedListNode* tempNode = this->viruses->findByName(virusName);
+void VaccinationCenter::vaccineStatusForSpecificVirus(char *citizenId, char *virusName) {
+    VirusLinkedListNode *tempNode = this->viruses->findByName(virusName);
     if (tempNode == NULL) {
         cout << "There is no Virus with name " << "'virusName'." << endl;
         return;
     }
 
-    Virus* tempVirus = tempNode->getVirus();
+    Virus *tempVirus = tempNode->getVirus();
     if (tempVirus == NULL) {
         cout << "There is no Virus with name " << virusName << endl;
         return;
@@ -70,13 +67,13 @@ void VaccinationCenter::populationStatusForCountry(
         Date *date2
 ) {
     CountryLinkedListNode *node = this->countries->findByName(countryName);
-    if(node == NULL) {
+    if (node == NULL) {
         cout << "There is no country with name " << countryName << endl;
         return;
     }
 
     Country *country = this->countries->findByName(countryName)->getCountry();
-    if(country == NULL) {
+    if (country == NULL) {
         cout << "There is no country with name " << countryName << endl;
         return;
     }
@@ -99,13 +96,13 @@ void VaccinationCenter::popStatusByAgeForCountry(
         Date *date2
 ) {
     CountryLinkedListNode *node = this->countries->findByName(countryName);
-    if(node == NULL) {
+    if (node == NULL) {
         cout << "There is no country with name " << countryName << endl;
         return;
     }
 
     Country *country = this->countries->findByName(countryName)->getCountry();
-    if(country == NULL) {
+    if (country == NULL) {
         cout << "There is no country with name " << countryName << endl;
         return;
     }
@@ -139,5 +136,66 @@ void VaccinationCenter::vaccinateNow(
         char *virusName
 ) {}
 
-void VaccinationCenter::listNotVaccinatedPersonsForVirus(char *virusName)
-{}
+void VaccinationCenter::listNotVaccinatedPersonsForVirus(char *virusName) {}
+
+void VaccinationCenter::checkAndAddCountry(char *country) {
+    if (this->countries->findByName(country) == NULL) {
+        Country *newCountry = new Country(
+                country,
+                this->viruses
+        );
+
+        this->countries->addAtStart(newCountry);
+    }
+}
+
+void VaccinationCenter::checkAndAddPerson(
+        char *citizenId,
+        char *firstName,
+        char *lastName,
+        char *country,
+        int age
+) {
+    if (this->people->findByCitizenId(citizenId) == NULL) {
+        Person *newPerson = new Person(
+                citizenId,
+                firstName,
+                lastName,
+                country,
+                age
+        );
+
+        this->people->addAtStart(newPerson);
+        this->countries->findByName(country)->getCountry()->addCitizen(age);
+    }
+}
+
+void VaccinationCenter::checkAndAddVirus(char *virusName) {
+    if (this->viruses->findByName(virusName) == NULL) {
+        BloomFilter *newBloomFilter = new BloomFilter();
+        VaccinatedSkipList *newVaccinatedSkipList = new VaccinatedSkipList();
+        NotVaccinatedSkipList *newNotVaccinatedSkipList = new NotVaccinatedSkipList();
+
+        Virus *newVirus = new Virus(
+                virusName,
+                newVaccinatedSkipList,
+                newNotVaccinatedSkipList,
+                newBloomFilter
+        );
+
+        this->viruses->addAtStart(newVirus);
+    }
+
+}
+
+PersonLinkedList *VaccinationCenter::getPeople() const {
+    return people;
+}
+
+VirusLinkedList *VaccinationCenter::getViruses() const {
+    return viruses;
+}
+
+CountryLinkedList *VaccinationCenter::getCountries() const {
+    return countries;
+}
