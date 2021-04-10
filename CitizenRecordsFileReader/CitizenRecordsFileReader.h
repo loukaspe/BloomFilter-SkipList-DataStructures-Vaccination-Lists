@@ -4,10 +4,11 @@
 
 #include "../PersonLinkedList/PersonLinkedList.h"
 #include "../VirusLinkedList/VirusLinkedList.h"
+#include "../CountryLinkedList/CountryLinkedList.h"
 
 class CitizenRecordsFileReader {
 public:
-    CitizenRecordsFileReader(char *fileName, PersonLinkedList *people, VirusLinkedList *viruses);
+    CitizenRecordsFileReader(char *, PersonLinkedList *, VirusLinkedList *, CountryLinkedList *);
 
     void readAndUpdateStructures();
 
@@ -15,6 +16,7 @@ private:
     char *fileName;
     PersonLinkedList *people;
     VirusLinkedList *viruses;
+    CountryLinkedList *countries;
     static const char *NO_INPUT_FILE_ERROR;
     static const char *OPEN_FILE_ERROR;
     static const char *OPEN_FILE_READ_MODE;

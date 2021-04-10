@@ -167,3 +167,54 @@ int VaccinatedSkipList::setLevelOfNodeByCalculatingPossibilities() {
     return level;
 }
 
+CountryVaccinationStatistics VaccinatedSkipList::getNumberOfCitizensOfCountryVaccinatedBetweenDates(
+        char *countryName,
+        Date *date1,
+        Date *date2
+) {
+    VaccinatedPersonSkipListNode *tempNode = firstNode->getNextNodeWithKey(0);
+    if (tempNode == lastNode) {
+        //todo: throw exception
+        return {0};
+    }
+
+    CountryVaccinationStatistics statistics = {0};
+    Vaccination *tempVaccination;
+    Person *tempPerson;
+    Date *tempDate;
+    int tempAge;
+
+    while (tempNode != lastNode) {
+        tempVaccination = tempNode->getVaccination();
+        tempPerson = tempVaccination->getPerson();
+        tempAge = tempPerson->getAge();
+        tempDate = tempVaccination->getDate();
+        if (
+                tempVaccination != NULL
+                && tempPerson != NULL
+                && tempDate != NULL
+                && tempPerson->getCountry() == countryName
+                && tempDate->isBiggerOrEqualThan(date1)
+                && tempDate->isSmallerOrEqualThan(date2)
+                ) {
+            statistics.numberOfVaccinatedCitizens++;
+
+            if (tempAge <= 20) {
+                statistics.numberOfVaccinatedCitizensUnder20yearsOld++;
+            }
+            else if (tempAge > 20 && tempAge <= 40) {
+                statistics.numberOfVaccinatedCitizensFrom20To40yearsOld++;
+            }
+            else if (tempAge > 40 && tempAge <= 60) {
+                statistics.numberOfVaccinatedCitizensFrom40To60yearsOld++;
+            }
+            else if (tempAge > 60) {
+                statistics.numberOfVaccinatedCitizensOver60yearsOld;
+            }
+        }
+
+        tempNode = tempNode->getNextNodeWithKey(0);
+    }
+
+    return statistics;
+}

@@ -9,8 +9,9 @@ const char *CitizenRecordsFileReader::ERROR_IN_READING_FILE = "ERROR: Cannot rea
 CitizenRecordsFileReader::CitizenRecordsFileReader(
         char *fileName,
         PersonLinkedList *people,
-        VirusLinkedList *viruses
-) : fileName(fileName), people(people), viruses(viruses) {}
+        VirusLinkedList *viruses,
+        CountryLinkedList *countries
+) : fileName(fileName), people(people), viruses(viruses), countries(countries) {}
 
 // 889 John Papadopoulos Greece 52 COVID-19 YES 27-12-2020
 // 889 John Papadopoulos Greece 52 Η1Ν1 ΝΟ
@@ -64,6 +65,17 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
         temp = Helper::removeNewLineCharacterFromString(temp);
         isVaccinated = setBooleanIsVaccinatedFromStringValue(temp);
 
+        // ADD NEW COUNTRY: new, check, add
+
+        if (this->countries->findByName(country) == NULL) {
+            Country *newCountry = new Country(
+                    country,
+                    this->viruses
+            );
+
+            this->countries->addAtStart(newCountry);
+        }
+
         // ADD NEW PERSON
 
         if (this->people->findByCitizenId(citizenId) == NULL) {
@@ -76,6 +88,7 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
             );
 
             this->people->addAtStart(newPerson);
+            this->countries->findByName(country)->getCountry()->addCitizen(age);
         }
 
         // ADD NEW VIRUS: new, check, add
@@ -95,12 +108,12 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
             this->viruses->addAtStart(newVirus);
         }
 
+        tempVirus = this->viruses->findByName(virusName)->getVirus();
+
         if (isVaccinated) {
             temp = strtok(NULL, SPACE_DELIMITER);
             temp = Helper::removeNewLineCharacterFromString(temp);
             date = new Date(temp);
-
-            tempVirus = this->viruses->findByName(virusName)->getVirus();
 
             if (this->isPersonAlreadyInsertedAsNotVaccinated(tempVirus, citizenId)) {
                 cout << "ERROR IN RECORD " << line << endl;
@@ -119,8 +132,6 @@ void CitizenRecordsFileReader::readAndUpdateStructures() {
             tempVirus->getVaccinatedPeopleBloomFilter()->add(citizenId);
         }
         else {
-            tempVirus = this->viruses->findByName(virusName)->getVirus();
-
             if (this->isPersonAlreadyInsertedAsVaccinated(tempVirus, citizenId)) {
                 cout << "ERROR IN RECORD " << line << endl;
                 continue;

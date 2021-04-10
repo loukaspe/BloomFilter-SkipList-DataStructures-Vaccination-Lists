@@ -10,10 +10,11 @@
 #include "../Date/Date.h"
 #include "../PersonLinkedList/PersonLinkedList.h"
 #include "../VirusLinkedList/VirusLinkedList.h"
+#include "../CountryLinkedList/CountryLinkedList.h"
 
 class VaccinationCenter {
 public:
-    VaccinationCenter(PersonLinkedList *people, VirusLinkedList *viruses);
+    VaccinationCenter(PersonLinkedList *, VirusLinkedList *, CountryLinkedList *);
 
     void vaccineStatusBloom(char *citizenId, char *virusName);
 
@@ -65,6 +66,7 @@ public:
 private:
     PersonLinkedList *people;
     VirusLinkedList *viruses;
+    CountryLinkedList *countries;
 };
 
 

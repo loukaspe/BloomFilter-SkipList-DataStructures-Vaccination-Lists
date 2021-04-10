@@ -6,8 +6,8 @@ char *MenuPromptCreator::AVAILABLE_COMMANDS[MenuPromptCreator::COMMANDS_NUMBER] 
         "/vaccineStatus",
         "/populationStatus",
         "/popStatusByAge",
-        "insertCitizenRecord",
-        "vaccinateNow",
+        "/insertCitizenRecord",
+        "/vaccinateNow",
         "/list-nonVaccinated-Persons",
         "/exit",
         "/help"
@@ -182,7 +182,7 @@ int MenuPromptCreator::executeInputCommand() {
             date1 = new Date(argumentTwo);
             date2 = new Date(argumentThree);
 
-//            populationStatusForAllCountries(virusName, date1, date2);
+            this->vaccinationCenter->populationStatusForAllCountries(virusName, date1, date2);
         }
         else {
             country = argumentOne;
@@ -190,7 +190,7 @@ int MenuPromptCreator::executeInputCommand() {
             date1 = new Date(argumentThree);
             date2 = new Date(argumentFour);
 
-//            populationStatusForCountry(country, virusName, date1, date2);
+            this->vaccinationCenter->populationStatusForCountry(country, virusName, date1, date2);
         }
 
         free(input);
@@ -221,7 +221,7 @@ int MenuPromptCreator::executeInputCommand() {
             date1 = new Date(argumentTwo);
             date2 = new Date(argumentThree);
 
-//            popStatusByAgeForAllCountries(virusName, date1, date2);
+            this->vaccinationCenter->popStatusByAgeForAllCountries(virusName, date1, date2);
         }
         else {
             country = argumentOne;
@@ -229,7 +229,7 @@ int MenuPromptCreator::executeInputCommand() {
             date1 = new Date(argumentThree);
             date2 = new Date(argumentFour);
 
-//            popStatusByAgeForCountry(country, virusName, date1, date2);
+            this->vaccinationCenter->popStatusByAgeForCountry(country, virusName, date1, date2);
         }
 
         free(input);

@@ -7,6 +7,15 @@
 
 #include "../VaccinatedPersonSkipListNode/VaccinatedPersonSkipListNode.h"
 
+
+struct CountryVaccinationStatistics {
+    int numberOfVaccinatedCitizens;
+    int numberOfVaccinatedCitizensUnder20yearsOld;
+    int numberOfVaccinatedCitizensFrom20To40yearsOld;
+    int numberOfVaccinatedCitizensFrom40To60yearsOld;
+    int numberOfVaccinatedCitizensOver60yearsOld;
+};
+
 static const int STARTING_VACCINATED_LIST_LEVEL = 1;
 static const int STARTING_VACCINATED_LIST_SIZE = 0;
 static const int VACCINATED_LIST_KEY_POSSIBILITY_LIMIT_FOR_UPDATING_LEVEL = 25;
@@ -48,6 +57,8 @@ public:
     int getNumberOfNodesExceptFirstAndLast() const;
 
     void setNumberOfNodesExceptFirstAndLast(int numberOfNodesExceptFirstAndLast);
+
+    CountryVaccinationStatistics getNumberOfCitizensOfCountryVaccinatedBetweenDates(char *, Date *, Date *);
 };
 
 

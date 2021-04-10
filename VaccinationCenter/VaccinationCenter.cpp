@@ -1,7 +1,10 @@
 #include "VaccinationCenter.h"
 
-VaccinationCenter::VaccinationCenter(PersonLinkedList *people, VirusLinkedList *viruses)
-        : people(people), viruses(viruses) {}
+VaccinationCenter::VaccinationCenter(
+        PersonLinkedList *people,
+        VirusLinkedList *viruses,
+        CountryLinkedList *countries
+): people(people), viruses(viruses), countries(countries) {}
 
 void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName)
 {
@@ -56,28 +59,59 @@ void VaccinationCenter::populationStatusForAllCountries(
         char *virusName,
         Date *date1,
         Date *date2
-)
-{}
+) {
+    this->countries->printStatisticsForDates(virusName, date1, date2);
+}
 
 void VaccinationCenter::populationStatusForCountry(
-        char *country,
+        char *countryName,
         char *virusName,
         Date *date1,
         Date *date2
-) {}
+) {
+    CountryLinkedListNode *node = this->countries->findByName(countryName);
+    if(node == NULL) {
+        cout << "There is no country with name " << countryName << endl;
+        return;
+    }
+
+    Country *country = this->countries->findByName(countryName)->getCountry();
+    if(country == NULL) {
+        cout << "There is no country with name " << countryName << endl;
+        return;
+    }
+
+    country->printCountryStatisticsForDates(virusName, date1, date2);
+}
 
 void VaccinationCenter::VaccinationCenter::popStatusByAgeForAllCountries(
         char *virusName,
         Date *date1,
         Date *date2
-) {}
+) {
+    this->countries->printStatisticsPerAgeForDates(virusName, date1, date2);
+}
 
 void VaccinationCenter::popStatusByAgeForCountry(
-        char *country,
+        char *countryName,
         char *virusName,
         Date *date1,
         Date *date2
-) {}
+) {
+    CountryLinkedListNode *node = this->countries->findByName(countryName);
+    if(node == NULL) {
+        cout << "There is no country with name " << countryName << endl;
+        return;
+    }
+
+    Country *country = this->countries->findByName(countryName)->getCountry();
+    if(country == NULL) {
+        cout << "There is no country with name " << countryName << endl;
+        return;
+    }
+
+    country->printCountryStatisticsPerAgeForDates(virusName, date1, date2);
+}
 
 void VaccinationCenter::insertVaccinated(
         char *citizenId,
