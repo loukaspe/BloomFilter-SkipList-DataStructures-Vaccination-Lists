@@ -339,7 +339,7 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-//        listNotVaccinatedPersonsForVirus(virusName);
+        this->vaccinationCenter->listNotVaccinatedPersonsForVirus(virusName);
 
         free(input);
         return CONTINUE_EXECUTION;

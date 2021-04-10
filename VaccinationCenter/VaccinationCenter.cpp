@@ -38,7 +38,7 @@ void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId) {
 void VaccinationCenter::vaccineStatusForSpecificVirus(char *citizenId, char *virusName) {
     VirusLinkedListNode *tempNode = this->viruses->findByName(virusName);
     if (tempNode == NULL) {
-        cout << "There is no Virus with name " << "'virusName'." << endl;
+        cout << "There is no Virus with name " << virusName << endl;
         return;
     }
 
@@ -215,7 +215,22 @@ void VaccinationCenter::vaccinateNow(
     );
 }
 
-void VaccinationCenter::listNotVaccinatedPersonsForVirus(char *virusName) {}
+void VaccinationCenter::listNotVaccinatedPersonsForVirus(char *virusName)
+{
+    VirusLinkedListNode *node = this->viruses->findByName(virusName);
+    if (node == NULL) {
+        cout << "There is no Virus with name " << virusName << endl;
+        return;
+    }
+
+    Virus *virus = node->getVirus();
+    if (virus == NULL) {
+        cout << "There is no Virus with name " << virusName << endl;
+        return;
+    }
+
+    virus->getNotVaccinatedPeopleList()->print();
+}
 
 void VaccinationCenter::checkAndAddCountry(char *country) {
     if (this->countries->findByName(country) == NULL) {
