@@ -24,4 +24,4 @@ add_executable(
         CitizenRecordsFileReader/CitizenRecordsFileReader.cpp CitizenRecordsFileReader/CitizenRecordsFileReader.h
         Date/Date.cpp Date/Date.h
         VaccinationCenter/VaccinationCenter.cpp VaccinationCenter/VaccinationCenter.h
-)
+        Country/Country.cpp Country/Country.h CountryLinkedList/CountryLinkedList.cpp CountryLinkedList/CountryLinkedList.h CountryLinkedList/CountryLinkedListNode.cpp CountryLinkedList/CountryLinkedListNode.h)

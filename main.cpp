@@ -26,18 +26,21 @@ int main(int argc, char *argv[]) {
 
     PersonLinkedList *people = new PersonLinkedList();
     VirusLinkedList *viruses = new VirusLinkedList();
+    CountryLinkedList *countries = new CountryLinkedList();
 
     CitizenRecordsFileReader *fileReader = new CitizenRecordsFileReader(
             citizenRecordsFile,
             people,
-            viruses
+            viruses,
+            countries
     );
 
     fileReader->readAndUpdateStructures();
 
     VaccinationCenter *vaccinationCenter = new VaccinationCenter(
             people,
-            viruses
+            viruses,
+            countries
     );
 
     MenuPromptCreator *menuPromptCreator = new MenuPromptCreator(

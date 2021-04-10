@@ -8,14 +8,14 @@ Date::Date(char *dateAsString) {
     sscanf(
             this->dateAsString,
             "%2d-%2d-%4d",
-            &dateTimeObject.tm_mday,
-            &dateTimeObject.tm_mon,
-            &dateTimeObject.tm_year
+            &day,
+            &month,
+            &year
     );
 
-    this->year = this->dateTimeObject.tm_year;
-    this->month = this->dateTimeObject.tm_mon;
-    this->day = this->dateTimeObject.tm_mday;
+    this->dateTimeObject.tm_year = year - 1900;
+    this->dateTimeObject.tm_mon = month - 1;
+    this->dateTimeObject.tm_mday = day;
 
     this->dateTimeInSeconds = mktime(&dateTimeObject);
 }
