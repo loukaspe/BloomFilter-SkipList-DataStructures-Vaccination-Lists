@@ -158,9 +158,6 @@ int MenuPromptCreator::executeInputCommand() {
         return CONTINUE_EXECUTION;
     }
 
-    //TODO: Synexizoyme edww
-
-
     // /populationStatus [country] virusName date1 date2
     if (strcmp(command, MenuPromptCreator::AVAILABLE_COMMANDS[2]) == 0) {
 
