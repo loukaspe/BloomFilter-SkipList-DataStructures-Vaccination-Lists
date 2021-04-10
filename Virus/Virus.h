@@ -23,6 +23,8 @@ public:
     Virus(char *virusName, VaccinatedSkipList *vaccinatedPeopleList, NotVaccinatedSkipList *notVaccinatedPeopleList,
           BloomFilter *notVaccinatedPeopleBloomFilter);
 
+    void printIfPersonIsVaccinated(char*, bool);
+
 private:
     char *virusName;
     VaccinatedSkipList *vaccinatedPeopleList;
