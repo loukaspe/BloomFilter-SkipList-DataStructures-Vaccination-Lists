@@ -151,7 +151,7 @@ int MenuPromptCreator::executeInputCommand() {
                 return CONTINUE_EXECUTION;
             }
 
-//            vaccineStatusForSpecificVirus(citizenId, virusName);
+            this->vaccinationCenter->vaccineStatusForSpecificVirus(citizenId, virusName);
         }
 
         free(input);

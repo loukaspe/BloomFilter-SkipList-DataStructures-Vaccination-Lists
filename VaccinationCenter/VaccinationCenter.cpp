@@ -35,7 +35,22 @@ void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId)
 }
 
 void VaccinationCenter::vaccineStatusForSpecificVirus(char *citizenId, char *virusName)
-{}
+{
+    VirusLinkedListNode* tempNode = this->viruses->findByName(virusName);
+    if (tempNode == NULL) {
+        cout << "There is no Virus with name " << "'virusName'." << endl;
+        return;
+    }
+
+    Virus* tempVirus = tempNode->getVirus();
+    if (tempVirus == NULL) {
+        cout << "There is no Virus with name " << virusName << endl;
+        return;
+    }
+
+    bool shouldPrintVirusName = false;
+    tempVirus->printIfPersonIsVaccinated(citizenId, shouldPrintVirusName);
+}
 
 void VaccinationCenter::populationStatusForAllCountries(
         char *virusName,
