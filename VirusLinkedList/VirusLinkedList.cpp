@@ -6,25 +6,25 @@ VirusLinkedList::VirusLinkedList() {
 }
 
 
-void VirusLinkedList::addAtStart(Virus* Virus) {
-    VirusLinkedListNode* newNode = new VirusLinkedListNode(Virus);
+void VirusLinkedList::addAtStart(Virus *Virus) {
+    VirusLinkedListNode *newNode = new VirusLinkedListNode(Virus);
 
     newNode->next = this->head;
     this->head = newNode;
     this->size++;
 }
 
-void VirusLinkedList::deleteNodeWithName(char* name) {
-    if( isEmpty() ) {
+void VirusLinkedList::deleteNodeWithName(char *name) {
+    if (isEmpty()) {
         return;
     }
 
-    VirusLinkedListNode* current = head;
-    VirusLinkedListNode* previous = NULL;
+    VirusLinkedListNode *current = head;
+    VirusLinkedListNode *previous = NULL;
 
-    while(strcmp(current->getVirus()->getVirusName(), name ) != 0 ) {
+    while (strcmp(current->getVirus()->getVirusName(), name) != 0) {
 
-        if(current->next == NULL) {
+        if (current->next == NULL) {
             return;
         }
 
@@ -32,7 +32,7 @@ void VirusLinkedList::deleteNodeWithName(char* name) {
         current = current->next;
     }
 
-    if(current == head) {
+    if (current == head) {
         head = head->next;
         free(current);
         this->size--;
@@ -52,10 +52,9 @@ bool VirusLinkedList::isEmpty() {
     return this->size == 0;
 }
 
-VirusLinkedListNode *VirusLinkedList::findByName(char* virusName) {
-    VirusLinkedListNode* current = this->head;
-    while (current != NULL)
-    {
+VirusLinkedListNode *VirusLinkedList::findByName(char *virusName) {
+    VirusLinkedListNode *current = this->head;
+    while (current != NULL) {
         if (strcmp(current->getVirus()->getVirusName(), virusName) == 0) {
             return current;
         }

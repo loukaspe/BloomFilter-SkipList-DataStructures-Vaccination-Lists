@@ -9,13 +9,20 @@
 class VirusLinkedList {
 public:
     VirusLinkedList();
-    void addAtStart(Virus*);
-    void deleteNodeWithName(char*);
+
+    void addAtStart(Virus *);
+
+    void deleteNodeWithName(char *);
+
     int getSize();
+
     bool isEmpty();
-    VirusLinkedListNode* findByName(char*);
+
+    VirusLinkedListNode *findByName(char *);
+
 private:
-    VirusLinkedListNode* head;
+
+    VirusLinkedListNode *head;
     int size;
 };
 

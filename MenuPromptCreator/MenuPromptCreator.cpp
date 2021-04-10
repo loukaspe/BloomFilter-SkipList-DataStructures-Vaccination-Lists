@@ -185,7 +185,8 @@ int MenuPromptCreator::executeInputCommand() {
             date2 = new Date(argumentThree);
 
 //            populationStatusForAllCountries(virusName, date1, date2);
-        } else {
+        }
+        else {
             country = argumentOne;
             virusName = argumentTwo;
             date1 = new Date(argumentThree);
@@ -223,7 +224,8 @@ int MenuPromptCreator::executeInputCommand() {
             date2 = new Date(argumentThree);
 
 //            popStatusByAgeForAllCountries(virusName, date1, date2);
-        } else {
+        }
+        else {
             country = argumentOne;
             virusName = argumentTwo;
             date1 = new Date(argumentThree);
@@ -271,7 +273,8 @@ int MenuPromptCreator::executeInputCommand() {
 //                age,
 //                date1
 //            );
-        } else if (isVaccinated == "NO") {
+        }
+        else if (isVaccinated == "NO") {
 //            insertNotVaccinated(
 //                citizenId,
 //                firstName,
@@ -279,7 +282,8 @@ int MenuPromptCreator::executeInputCommand() {
 //                country,
 //                age
 //            );
-        } else {
+        }
+        else {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;
             free(input);
             return CONTINUE_EXECUTION;
