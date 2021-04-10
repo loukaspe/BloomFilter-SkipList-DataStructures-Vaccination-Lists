@@ -41,7 +41,8 @@ public:
             char *lastName,
             char *country,
             int age,
-            Date *date1
+            char *virusName,
+            Date *date
     );
 
     void insertNotVaccinated(
@@ -49,7 +50,8 @@ public:
             char *firstName,
             char *lastName,
             char *country,
-            int age
+            int age,
+            char *virusName
     );
 
     void vaccinateNow(

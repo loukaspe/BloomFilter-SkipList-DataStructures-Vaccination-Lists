@@ -260,26 +260,28 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-        if (isVaccinated == "YES") {
+        if (strcmp(isVaccinated, "YES") == 0) {
             date1 = new Date(strtok(NULL, SPACE_DELIMITER));
 
-//            insertVaccinated(
-//                citizenId,
-//                firstName,
-//                lastName,
-//                country,
-//                age,
-//                date1
-//            );
+            this->vaccinationCenter->insertVaccinated(
+                citizenId,
+                firstName,
+                lastName,
+                country,
+                atoi(age),
+                virusName,
+                date1
+            );
         }
-        else if (isVaccinated == "NO") {
-//            insertNotVaccinated(
-//                citizenId,
-//                firstName,
-//                lastName,
-//                country,
-//                age
-//            );
+        else if (strcmp(isVaccinated, "NO") == 0) {
+            this->vaccinationCenter->insertNotVaccinated(
+                citizenId,
+                firstName,
+                lastName,
+                country,
+                atoi(age),
+                virusName
+            );
         }
         else {
             cout << MenuPromptCreator::NOT_VALID_COMMAND_MESSAGE << endl;

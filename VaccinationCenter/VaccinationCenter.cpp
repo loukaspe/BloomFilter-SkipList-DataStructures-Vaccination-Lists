@@ -116,16 +116,74 @@ void VaccinationCenter::insertVaccinated(
         char *lastName,
         char *country,
         int age,
-        Date *date1
-) {}
+        char *virusName,
+        Date *date
+) {
+    this->checkAndAddCountry(country);
+    this->checkAndAddPerson(
+            citizenId,
+            firstName,
+            lastName,
+            country,
+            age
+    );
+    this->checkAndAddVirus(virusName);
+
+    VirusLinkedListNode *virusNode = this->viruses->findByName(virusName);
+    Virus *virus = virusNode->getVirus();
+
+    Vaccination *possibleVaccination = virus->getVaccinatedPeopleList()->search(atoi(citizenId));
+    if (possibleVaccination != NULL) {
+        cout << "ERROR: CITIZEN " << citizenId << " ALREADY VACCINATED ON "
+             << possibleVaccination->getDate()->toString() << endl;
+        return;
+    }
+
+    Vaccination *newVaccination = new Vaccination(
+            this->people->findByCitizenId(citizenId)->person,
+            date
+    );
+
+    virus->getVaccinatedPeopleList()->insert(
+            atoi(citizenId),
+            newVaccination
+    );
+    virus->getVaccinatedPeopleBloomFilter()->add(citizenId);
+}
 
 void VaccinationCenter::insertNotVaccinated(
         char *citizenId,
         char *firstName,
         char *lastName,
         char *country,
-        int age
-) {}
+        int age,
+        char *virusName
+) {
+    this->checkAndAddCountry(country);
+    this->checkAndAddPerson(
+            citizenId,
+            firstName,
+            lastName,
+            country,
+            age
+    );
+    this->checkAndAddVirus(virusName);
+
+    VirusLinkedListNode *virusNode = this->viruses->findByName(virusName);
+    Virus *virus = virusNode->getVirus();
+
+    Vaccination *possibleVaccination = virus->getVaccinatedPeopleList()->search(atoi(citizenId));
+    if (possibleVaccination != NULL) {
+        cout << "ERROR: CITIZEN " << citizenId << " ALREADY VACCINATED ON "
+             << possibleVaccination->getDate()->toString() << endl;
+        return;
+    }
+
+    virus->getNotVaccinatedPeopleList()->insert(
+            atoi(citizenId),
+            this->people->findByCitizenId(citizenId)->person
+    );
+}
 
 void VaccinationCenter::vaccinateNow(
         char *citizenId,
