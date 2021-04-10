@@ -138,8 +138,9 @@ int MenuPromptCreator::executeInputCommand() {
         }
 
         if (virusName == NULL) {
-//            vaccineStatusForAllViruses(citizenId);
-        } else {
+            this->vaccinationCenter->vaccineStatusForAllViruses(citizenId);
+        }
+        else {
             possibleExtraArgument = strtok(NULL, SPACE_DELIMITER);
 
             if (

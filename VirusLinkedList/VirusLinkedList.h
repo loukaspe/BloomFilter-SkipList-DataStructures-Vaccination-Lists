@@ -20,7 +20,11 @@ public:
 
     VirusLinkedListNode *findByName(char *);
 
+    void checkIfVaccinatedForAllViruses(char*);
+
 private:
+
+    void traverseAndCheckIfVaccinated(VirusLinkedListNode *, char *);
 
     VirusLinkedListNode *head;
     int size;

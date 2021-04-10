@@ -65,3 +65,30 @@ VirusLinkedListNode *VirusLinkedList::findByName(char *virusName) {
     return NULL;
 }
 
+void VirusLinkedList::traverseAndCheckIfVaccinated(
+        VirusLinkedListNode *initialRecursiveNode,
+        char *citizenId
+) {
+    if (initialRecursiveNode == NULL) {
+        return;
+    }
+
+    Virus *tempVirus = initialRecursiveNode->getVirus();
+    Date *tempDate;
+    Vaccination *tempVaccination;
+    tempVaccination = tempVirus->getVaccinatedPeopleList()->search(atoi(citizenId));
+
+    if (tempVaccination != NULL) {
+        tempDate = tempVaccination->getDate();
+        cout << tempVirus->getVirusName() << " YES " << tempDate->toString() << endl;
+    }
+    else {
+        cout << tempVirus->getVirusName() << " NO" << endl;
+    }
+
+    this->traverseAndCheckIfVaccinated(initialRecursiveNode->next, citizenId);
+}
+
+void VirusLinkedList::checkIfVaccinatedForAllViruses(char *citizenId) {
+    this->traverseAndCheckIfVaccinated(this->head, citizenId);
+}

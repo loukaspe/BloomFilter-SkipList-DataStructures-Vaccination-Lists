@@ -1,3 +1,7 @@
 1. Epitrepetai h <std::string>
 2. Symfwna me https://piazza.com/class/kkx2o2gvper2nj?cid=54 to citizenId mporei na nai string h int
 3. Endeiktiko Bloom Filter Size ta 100KBytes
+4. Symfwna me https://piazza.com/class/kkx2o2gvper2nj?cid=41 & https://piazza.com/class/kkx2o2gvper2nj?cid=23
+    h vaccineStatus elegxei mono thn vaccinated skip list kai an den brei ekei emboliasmeno
+    to polith, tote ton thewrei mh emboliasmeno, aneksarthta me to an einai h oxi sthn
+    not vaccinatedSkip List

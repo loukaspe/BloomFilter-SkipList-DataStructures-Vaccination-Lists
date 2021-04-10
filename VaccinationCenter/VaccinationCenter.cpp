@@ -30,7 +30,9 @@ void VaccinationCenter::vaccineStatusBloom(char *citizenId, char *virusName)
 }
 
 void VaccinationCenter::vaccineStatusForAllViruses(char *citizenId)
-{}
+{
+    this->viruses->checkIfVaccinatedForAllViruses(citizenId);
+}
 
 void VaccinationCenter::vaccineStatusForSpecificVirus(char *citizenId, char *virusName)
 {}
