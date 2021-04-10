@@ -264,23 +264,23 @@ int MenuPromptCreator::executeInputCommand() {
             date1 = new Date(strtok(NULL, SPACE_DELIMITER));
 
             this->vaccinationCenter->insertVaccinated(
-                citizenId,
-                firstName,
-                lastName,
-                country,
-                atoi(age),
-                virusName,
-                date1
+                    citizenId,
+                    firstName,
+                    lastName,
+                    country,
+                    atoi(age),
+                    virusName,
+                    date1
             );
         }
         else if (strcmp(isVaccinated, "NO") == 0) {
             this->vaccinationCenter->insertNotVaccinated(
-                citizenId,
-                firstName,
-                lastName,
-                country,
-                atoi(age),
-                virusName
+                    citizenId,
+                    firstName,
+                    lastName,
+                    country,
+                    atoi(age),
+                    virusName
             );
         }
         else {
@@ -316,7 +316,14 @@ int MenuPromptCreator::executeInputCommand() {
             return CONTINUE_EXECUTION;
         }
 
-//        vaccinateNow(citizenId, firstName, lastName, country, age, virusName);
+        this->vaccinationCenter->vaccinateNow(
+                citizenId,
+                firstName,
+                lastName,
+                country,
+                atoi(age),
+                virusName
+        );
 
         free(input);
         return CONTINUE_EXECUTION;

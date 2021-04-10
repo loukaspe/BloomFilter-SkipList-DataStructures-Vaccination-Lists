@@ -192,7 +192,28 @@ void VaccinationCenter::vaccinateNow(
         char *country,
         int age,
         char *virusName
-) {}
+) {
+    time_t todayInSeconds = time(NULL);
+    struct tm todayTimeObject = *localtime(&todayInSeconds);
+    char todayAsString[10];
+    sprintf(
+            todayAsString,
+            "%02d-%02d-%04d",
+            todayTimeObject.tm_mday,
+            todayTimeObject.tm_mon + 1,
+            todayTimeObject.tm_year + 1900);
+    Date *today = new Date(todayAsString);
+
+    this->insertVaccinated(
+            citizenId,
+            firstName,
+            lastName,
+            country,
+            age,
+            virusName,
+            today
+    );
+}
 
 void VaccinationCenter::listNotVaccinatedPersonsForVirus(char *virusName) {}
 
