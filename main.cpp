@@ -1,5 +1,5 @@
-#include "CitizenRecordsFileReader/CitizenRecordsFileReader.h"
-#include "MenuPromptCreator/MenuPromptCreator.h"
+#include "CitizenRecordsFileReader.h"
+#include "MenuPromptCreator.h"
 #include <getopt.h>
 
 const char *PROGRAM_OPTIONS = "c:b:";
